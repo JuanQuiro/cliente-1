@@ -340,6 +340,7 @@ const formFields = [
   // Contacto - Leaflet Map & UI
   declare const L: any;
   document.addEventListener('DOMContentLoaded', () => {
+    // Mapa Leaflet
     const mapEl = document.getElementById('map');
     if (mapEl && typeof L !== 'undefined') {
       const location: [number, number] = [18.4655, -66.1057];
@@ -352,11 +353,7 @@ const formFields = [
       L.marker(location).addTo(map).bindPopup('Nuestra ubicación').openPopup();
     }
 
-
-
-
-
-  document.addEventListener('DOMContentLoaded', () => {
+    // Formulario
     const form = document.getElementById('contactForm');
     const formMessage = document.getElementById('formMessage');
     
@@ -373,8 +370,8 @@ const formFields = [
         }, 5000);
       });
     }
-    
-    // FAQ functionality
+
+    // FAQ
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
       const question = item.querySelector('.faq-question');
