@@ -2,7 +2,9 @@
 ---
 <header class="navbar">
   <div class="container">
-    <a href="/" class="logo">Jonathan <span>Roofing</span></a>
+    <a href="/" class="logo">
+      <img src="/images/logo-navbar.png" alt="Jonathan Roofing" class="logo-image">
+    </a>
 
     <button class="mobile-menu-btn" aria-label="Menú" aria-expanded="false" aria-controls="nav-links">
       <span class="menu-icon"></span>
@@ -42,13 +44,15 @@
     justify-content: space-between;
   }
   .logo {
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--green);
+    display: flex;
+    align-items: center;
     text-decoration: none;
   }
-  .logo span {
-    color: var(--dark);
+  .logo-image {
+    height: 70px; /* tamaño ajustado */
+    width: auto;
+    object-fit: contain;
+    max-width: 260px;
   }
 
   /* Nav Links */
