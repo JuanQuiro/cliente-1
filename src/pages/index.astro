@@ -1,0 +1,247 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+import MainLayout from '../layouts/MainLayout.astro';
+
+const pageTitle = 'Inicio';
+const pageDescription = 'Servicios profesionales de mantenimiento para tu hogar o negocio.';
+---
+
+<MainLayout title={pageTitle} description={pageDescription}>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="!text-white">Mantenimiento Residencial y Comercial de Calidad</h1>
+        <p>Ofrecemos servicios de techado y paisajismo excepcionales en Puerto Rico, con un enfoque en la durabilidad, la estética y la satisfacción del cliente.</p>
+        <div class="hero-buttons">
+          <a href="/servicios" class="btn btn-primary">Nuestros Servicios</a>
+          <a href="/contacto" class="btn btn-outline">Solicitar Cotización</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="/images/hero-bg.jpg" alt="Servicios profesionales de mantenimiento" />
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section">
+    <div class="container">
+      <h2>¿Por qué elegirnos?</h2>
+      <p>Somos un equipo con años de experiencia en techado, pintura y paisajismo. Trabajamos con materiales de primera calidad y un enfoque 100 % en la satisfacción del cliente, ofreciendo resultados duraderos y estéticamente superiores.</p>
+    </div>
+  </section>
+
+  
+
+  <!-- Featured Services -->
+  <section class="featured-services">
+    <div class="container">
+      <div class="section-header">
+        <h2>Nuestros Servicios</h2>
+        <p>Ofrecemos una amplia gama de servicios profesionales para satisfacer todas tus necesidades de mantenimiento.</p>
+      </div>
+      
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="mx-auto service-icon">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <div class="service-content">
+            <h3>Corte de Grama</h3>
+            <p>Mantenimiento profesional de jardines y áreas verdes para mantener tu espacio exterior impecable.</p>
+          </div>
+        </div>
+        
+        <div class="service-card">
+          <div class="mx-auto service-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <div class="service-content">
+            <h3>Limpieza de Techos</h3>
+            <p>Eliminación de musgo, hojas y suciedad para prolongar la vida útil de tu techo.</p>
+          </div>
+        </div>
+        
+        <div class="service-card">
+          <div class="mx-auto service-icon">
+            <i class="fas fa-paint-roller"></i>
+          </div>
+          <div class="service-content">
+            <h3>Pintura Profesional</h3>
+            <p>Transforma tus espacios con nuestro servicio de pintura de la más alta calidad.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="cta-banner"><div class="container">
+    <h2 class="text-white mr-6">¿Listo para transformar tu espacio?</h2>
+    <a href="/contacto" class="btn btn-primary">Solicita tu Cotización Gratis</a>
+  </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h2>Contáctanos</h2>
+          <p>¿Tienes alguna pregunta o necesitas más información? Estamos aquí para ayudarte.</p>
+          
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="fas fa-phone"></i>
+            </div>
+            <div class="info-content">
+              <h4>Teléfono</h4>
+              <a href="tel:+1234567890">+1 234 567 890</a>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="info-content">
+              <h4>Correo electrónico</h4>
+              <a href="mailto:contacto@ejemplo.com">contacto@ejemplo.com</a>
+            </div>
+          </div>
+          
+          <div class="info-item">
+            <div class="info-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="info-content">
+              <h4>Dirección</h4>
+              <p>123 Calle Principal<br>Ciudad, País</p>
+            </div>
+          </div>
+          
+          <div class="social-links">
+            <a href="#" class="social-link" aria-label="Facebook">
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-link" aria-label="WhatsApp">
+              <i class="fab fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+        
+        <div class="map-container">
+          <div id="map"></div>
+          <div class="map-overlay">
+            <i class="fas fa-map-marker-alt"></i>
+            <span>Nuestra ubicación</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter-section">
+    <div class="container">
+      <h2>Jonathan Roofing & Landscaping</h2>
+      <p>Suscríbase a nuestro boletín</p>
+      <form class="newsletter-form" action="#" method="post" onsubmit="event.preventDefault();">
+        <input type="email" placeholder="Ingresa su correo electrónico" required />
+        <button type="submit" class="btn btn-primary">Subscribirse</button>
+      </form>
+    </div>
+  </section>
+  
+  <style>
+    .hero .container { flex-direction: column; align-items: center; text-align: center; }
+    .hero-image { display: none; }
+    .newsletter-section { padding: 4rem 0; text-align: center; }
+    .newsletter-form { display: flex; gap: 1rem; justify-content: center; max-width: 500px; margin: 2rem auto 0; }
+    .newsletter-form input { flex: 1; padding: 0.75rem 1rem; border: 1px solid var(--gray); border-radius: var(--radius); font-size: 1rem; }
+    .newsletter-form button { padding: 0.75rem 1.5rem; }
+    /* Override primary button color to green */
+    .btn-primary { background-color: #28a745; border-color: #28a745; }
+    .btn-primary:hover { background-color: #218838; border-color: #1e7e34; }
+    /* Mostrar secciones anteriormente ocultas y estilos modernizados */
+    .featured-services, .contact-section { display: block; }
+
+    /* Hero */
+    .hero .btn-primary { background:var(--accent); border-color:var(--accent); }
+    .hero .btn-primary:hover { background:#c77705; }
+    .hero .btn-outline { border-color:#fff; color:#fff; }
+    .hero .btn-outline:hover { background:rgba(255,255,255,0.15); }
+    .hero {
+      background: linear-gradient(135deg, rgba(var(--primary-rgb),0.65) 0%, rgba(var(--primary-dark-rgb),0.65) 100%), url('/images/hero-bg.jpg') center/cover no-repeat; /* Overlay de marca */
+      color: #fff;
+      padding: 8rem 1rem;
+      position: relative;
+    }
+    .hero .container { max-width: 900px; display:flex; flex-direction: column; align-items: center; text-align: center; }
+    .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 1rem; }
+    .hero p { font-size: 1.125rem; max-width: 700px; margin-bottom: 2rem; }
+
+    /* About Section */
+    .about-section { padding: 5rem 1rem; background: #f9fafb; }
+    .about-section .container { max-width: 1000px; margin: 0 auto; text-align: center; }
+    .about-section h2 { font-size: 2rem; margin-bottom: 1rem; }
+    .about-section p { font-size: 1.1rem; max-width: 800px; margin: 0 auto; }
+
+    /* Featured Services */
+    .featured-services { padding: 5rem 1rem; }
+    .services-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 2rem; margin-top: 3rem; }
+    .service-card { background:#fff; border-radius: 0.75rem; box-shadow: 0 4px 20px rgba(0,0,0,.05); padding:2rem; transition: transform .3s, box-shadow .3s; }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
+    .service-icon { font-size:2rem; color:#28a745; margin-bottom: 1rem; }
+
+    /* CTA Banner */
+    .cta-banner { background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color:#fff; padding:4rem 1rem; text-align:center; }
+    .cta-banner h2 { font-size:2.25rem; margin-bottom:1.5rem; font-weight:700; }
+    .cta-banner .btn-primary { background:#fff; color:var(--primary); border-color:#fff; display:inline-flex; align-items:center; justify-content:center; padding:1rem 2.5rem; font-size:1.1rem; border-radius:var(--radius-full); margin-top:1.5rem; box-shadow:var(--shadow-md); }
+    .cta-banner .btn-primary:hover { background:#f8f9fa; }
+
+    .hero-buttons { display:flex; gap:1.25rem; flex-wrap:wrap; justify-content:center; margin-top:2rem; }
+
+    /* Newsletter */
+    .newsletter-section { padding: 4rem 1rem; text-align: center; background:#ffffff; }
+    .newsletter-form { display:flex; gap:1rem; justify-content:center; max-width: 600px; margin:2rem auto 0; }
+    .newsletter-form input { flex: 1; padding:0.75rem 1rem; border:1px solid #d1d5db; border-radius: 0.5rem; font-size: 1rem; }
+
+    /* Contact */
+    .contact-section { padding:5rem 1rem; background:#f9fafb; }
+    .contact-grid { display:grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap:2.5rem; align-items:start; }
+    .contact-info h2 { font-size:2rem; margin-bottom:1rem; }
+    .info-item { display:flex; gap:1rem; margin-bottom:1rem; }
+    .info-icon { font-size:1.5rem; color:#28a745; }
+    .map-container { border-radius:0.75rem; overflow:hidden; box-shadow:0 4px 20px rgba(0,0,0,.05); height:320px; }
+  </style>
+
+  <script>
+      // Initialize Leaflet map with Thunderforest tiles
+      declare const L: any;
+        window.addEventListener('load', () => {
+        const mapElement = document.getElementById('map');
+        if (!mapElement || typeof L === 'undefined') return;
+
+        // Coordenadas por defecto (San Juan, PR)
+        const location = [18.4655, -66.1057];
+
+        const apiKey = import.meta.env.PUBLIC_THUNDERFOREST_API_KEY || '154b7c6250724292ab60fdac2ff0669c';
+
+        const map = L.map(mapElement).setView(location, 13);
+
+        L.tileLayer(`https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=${apiKey}`, {
+          attribution: '&copy; OpenStreetMap contributors & Thunderforest',
+          maxZoom: 22,
+        }).addTo(map);
+
+        L.marker(location).addTo(map).bindPopup('Nuestra ubicación').openPopup();
+      });
+  </script>

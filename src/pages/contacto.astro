@@ -1,0 +1,400 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const pageTitle = 'Contáctenos';
+const pageDescription = 'Ponte en contacto con nuestro equipo. Estamos aquí para responder a todas tus preguntas.';
+
+const contactInfo = [
+  { icon: 'fas fa-map-marker-alt', title: 'Dirección', content: '123 Calle Principal, Ciudad, País', link: 'https://maps.google.com' },
+  { icon: 'fas fa-phone-alt', title: 'Teléfono', content: '+1 234 567 890', link: 'tel:+1234567890' },
+  { icon: 'fas fa-envelope', title: 'Correo Electrónico', content: 'info@ejemplo.com', link: 'mailto:info@ejemplo.com' },
+  { icon: 'fas fa-clock', title: 'Horario', content: 'Lun-Vie: 8:00 AM - 6:00 PM\nSáb: 9:00 AM - 2:00 PM', link: '' }
+];
+
+const formFields = [
+  { id: 'name', type: 'text', label: 'Nombre Completo', placeholder: 'Tu nombre completo', required: true },
+  { id: 'email', type: 'email', label: 'Correo Electrónico', placeholder: 'tu@email.com', required: true },
+  { id: 'phone', type: 'tel', label: 'Teléfono', placeholder: 'Tu número de teléfono', required: true },
+  { id: 'subject', type: 'text', label: 'Asunto', placeholder: '¿Cómo podemos ayudarte?', required: true },
+  { id: 'message', type: 'textarea', label: 'Mensaje', placeholder: 'Cuéntanos más...', required: true }
+];
+---
+
+<MainLayout title={pageTitle} description={pageDescription}>
+  <section class="page-header">
+    <div class="container">
+      <h1>Contáctenos</h1>
+      <nav class="breadcrumb">
+        <a href="/">Inicio</a>
+        <span>/</span>
+        <span>Contacto</span>
+      </nav>
+    </div>
+  </section>
+
+  <section class="contact-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Estamos Aquí para Ayudarte</h2>
+        <p>Completa el formulario y nos pondremos en contacto contigo.</p>
+      </div>
+      
+      <div class="contact-container">
+        <div class="contact-form-container">
+          <form id="contactForm" class="contact-form">
+            {formFields.map(field => (
+              <div class="form-group">
+                <label for={field.id}>
+                  {field.label}
+                  {field.required && <span class="required">*</span>}
+                </label>
+                {field.type === 'textarea' ? (
+                  <textarea 
+                    id={field.id} 
+                    name={field.id}
+                    placeholder={field.placeholder}
+                    required={field.required}
+                    rows="5"
+                  ></textarea>
+                ) : (
+                  <input 
+                    type={field.type} 
+                    id={field.id} 
+                    name={field.id}
+                    placeholder={field.placeholder}
+                    required={field.required}
+                  />
+                )}
+              </div>
+            ))}
+            
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary">
+                <i class="fas fa-paper-plane"></i> Enviar Mensaje
+              </button>
+            </div>
+            
+            <div id="formMessage" class="form-message"></div>
+          </form>
+        </div>
+        
+        <div class="contact-info-container">
+          <div class="contact-info-box">
+            <h3>Información de Contacto</h3>
+            <p>Estamos disponibles para atenderte en nuestro horario de atención.</p>
+            
+            <ul class="contact-info-list">
+              {contactInfo.map((item, index) => (
+                <li class="contact-info-item">
+                  <div class="contact-icon">
+                    <i class={item.icon}></i>
+                  </div>
+                  <div class="contact-details">
+                    <h4>{item.title}</h4>
+                    {item.link ? (
+                      <a href={item.link} target="_blank" rel="noopener noreferrer">
+                        {item.content.split('\n').map((line, i) => (
+                          <p key={i}>{line}</p>
+                        ))}
+                      </a>
+                    ) : (
+                      <p>{item.content}</p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+            
+            <div class="social-links">
+              <a href="#" class="social-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+              <a href="#" class="social-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" class="social-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="map-section">
+    <div id="map"></div>
+  </section>
+</MainLayout>
+
+<style>
+  .page-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/contact-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 6rem 0 3rem;
+  }
+  
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .breadcrumb {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  
+  .breadcrumb span {
+    opacity: 0.7;
+  }
+  
+  .contact-section {
+    padding: 4rem 0;
+    background-color: #f9fafb;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .section-header h2 {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+  
+  .contact-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .contact-form-container {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+  
+  .required {
+    color: var(--accent);
+    margin-left: 0.2rem;
+  }
+  
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+  }
+  
+  .form-actions {
+    margin-top: 1.5rem;
+  }
+  
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .contact-info-box {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+  }
+  
+  .contact-info-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary);
+  }
+  
+  .contact-info-list {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+  }
+  
+  .contact-info-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .contact-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(231, 76, 60, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+  }
+  
+  .contact-details h4 {
+    margin: 0 0 0.3rem;
+    font-size: 1.1rem;
+  }
+  
+  .contact-details p,
+  .contact-details a {
+    margin: 0;
+    color: var(--gray);
+    text-decoration: none;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #f0f0f0;
+  }
+  
+  .social-link {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary);
+    transition: all 0.3s ease;
+  }
+  
+  .social-link:hover {
+    background: var(--accent);
+    color: white;
+  }
+  
+  .map-section {
+    height: 400px;
+  }
+  
+  #map {
+    width: 100%;
+    height: 100%;
+  }
+  
+  @media (max-width: 992px) {
+    .contact-container {
+      grid-template-columns: 1fr;
+      max-width: 700px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .page-header h1 {
+      font-size: 2rem;
+    }
+    
+    .section-header h2 {
+      font-size: 1.8rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .contact-form-container,
+    .contact-info-box {
+      padding: 1.5rem;
+    }
+    
+    .contact-info-item {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  // Contacto - Leaflet Map & UI
+  declare const L: any;
+  document.addEventListener('DOMContentLoaded', () => {
+    const mapEl = document.getElementById('map');
+    if (mapEl && typeof L !== 'undefined') {
+      const location: [number, number] = [18.4655, -66.1057];
+      const apiKey = import.meta.env.PUBLIC_THUNDERFOREST_API_KEY || '154b7c6250724292ab60fdac2ff0669c';
+      const map = L.map(mapEl).setView(location, 13);
+      L.tileLayer(`https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=${apiKey}`, {
+        attribution: '&copy; OpenStreetMap contributors & Thunderforest',
+        maxZoom: 22,
+      }).addTo(map);
+      L.marker(location).addTo(map).bindPopup('Nuestra ubicación').openPopup();
+    }
+
+
+
+
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('contactForm');
+    const formMessage = document.getElementById('formMessage');
+    
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        formMessage.textContent = 'Mensaje enviado con éxito. ¡Gracias por contactarnos!';
+        formMessage.className = 'form-message success';
+        form.reset();
+        
+        setTimeout(() => {
+          formMessage.textContent = '';
+          formMessage.className = 'form-message';
+        }, 5000);
+      });
+    }
+    
+    // FAQ functionality
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      const answer = item.querySelector('.faq-answer');
+      
+      question.addEventListener('click', () => {
+        const isOpen = item.classList.contains('active');
+        
+        // Close all items
+        faqItems.forEach(i => {
+          i.classList.remove('active');
+          i.querySelector('.faq-answer').style.maxHeight = '0';
+        });
+        
+        // Toggle current item
+        if (!isOpen) {
+          item.classList.add('active');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+  });
+</script>

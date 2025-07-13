@@ -1,0 +1,482 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+
+const pageTitle = 'Nuestros Servicios';
+const pageDescription = 'Descubre nuestra amplia gama de servicios profesionales de mantenimiento para hogares y negocios.';
+
+// All services data
+const allServices = [
+  {
+    id: 'corte-de-grama',
+    title: 'Corte de Grama',
+    icon: '🌿',
+    description: 'Mantenimiento profesional de jardines y áreas verdes para mantener tu espacio exterior impecable en todo momento.',
+    details: [
+      'Corte y poda de césped',
+      'Eliminación de malezas',
+      'Fertilización y abono',
+      'Riego y drenaje',
+      'Mantenimiento de jardines'
+    ],
+    image: '/images/services/lawn-care.jpg'
+  },
+  {
+    id: 'limpieza-de-techos',
+    title: 'Limpieza de Techos',
+    icon: '🏠',
+    description: 'Servicio profesional de limpieza y mantenimiento de techos para prolongar su vida útil y mantener su hogar seguro.',
+    details: [
+      'Limpieza de tejas',
+      'Eliminación de musgo y hongos',
+      'Revisión de canaletas',
+      'Mantenimiento preventivo',
+      'Reparaciones menores'
+    ],
+    image: '/images/services/roof-cleaning.jpg'
+  },
+  {
+    id: 'pintura-profesional',
+    title: 'Pintura Profesional',
+    icon: '🎨',
+    description: 'Transforma tus espacios interiores y exteriores con nuestro servicio de pintura de la más alta calidad.',
+    details: [
+      'Pintura de interiores',
+      'Pintura de exteriores',
+      'Preparación de superficies',
+      'Técnicas especiales',
+      'Asesoría en colores'
+    ],
+    image: '/images/services/painting.jpg'
+  },
+  {
+    id: 'mantenimiento-general',
+    title: 'Mantenimiento General',
+    icon: '🔧',
+    description: 'Soluciones integrales de mantenimiento para mantener tu propiedad en óptimas condiciones durante todo el año.',
+    details: [
+      'Reparaciones menores',
+      'Mantenimiento preventivo',
+      'Instalaciones básicas',
+      'Ajustes y calibraciones',
+      'Inspecciones técnicas'
+    ],
+    image: '/images/services/maintenance.jpg'
+  },
+  {
+    id: 'jardineria',
+    title: 'Jardinería Profesional',
+    icon: '🌻',
+    description: 'Diseño y mantenimiento de jardines para crear espacios verdes hermosos y funcionales.',
+    details: [
+      'Diseño de jardines',
+      'Siembra de plantas',
+      'Sistemas de riego',
+      'Poda de árboles y arbustos',
+      'Mantenimiento de áreas verdes'
+    ],
+    image: '/images/services/gardening.jpg'
+  },
+  {
+    id: 'reparaciones',
+    title: 'Reparaciones del Hogar',
+    icon: '🏡',
+    description: 'Soluciones rápidas y efectivas para las reparaciones más comunes en el hogar.',
+    details: [
+      'Reparación de goteras',
+      'Cambio de cerraduras',
+      'Arreglo de muebles',
+      'Reparación de paredes',
+      'Instalaciones eléctricas básicas'
+    ],
+    image: '/images/services/repairs.jpg'
+  }
+];
+---
+
+<MainLayout title={pageTitle} description={pageDescription}>
+  <!-- Page Header -->
+  <section class="page-header relative text-center text-white py-24 md:py-32">
+    <div class="container">
+      <h1>Nuestros Servicios</h1>
+      <nav class="breadcrumb">
+        <a href="/">Inicio</a>
+        <span>/</span>
+        <span>Servicios</span>
+      </nav>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="services-grid-section">
+    <div class="container">
+      <div class="section-intro">
+        <h2>Soluciones Profesionales a tu Medida</h2>
+        <p>Ofrecemos una amplia gama de servicios de mantenimiento para satisfacer todas tus necesidades. Nuestro equipo de expertos está listo para ayudarte con soluciones profesionales y de calidad.</p>
+      </div>
+      
+      <div class="services-container">
+        {allServices.map(service => (
+          <article class="service-card group" id={service.id}>
+            <div class="service-card-inner">
+              <div class="service-image">
+                <img src={service.image} alt={service.title} loading="lazy" />
+                <div class="service-overlay opacity-0 group-hover:opacity-100 transition">
+                  <a href={`/contacto?servicio=${encodeURIComponent(service.title)}`} class="btn btn-primary">
+                    Solicitar Servicio
+                  </a>
+                </div>
+              </div>
+              <div class="service-content">
+                <div class="service-icon">{service.icon}</div>
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+                <ul class="service-features">
+                  {service.details.map(detail => (
+                    <li>{detail}</li>
+                  ))}
+                </ul>
+                <a href={`/contacto?servicio=${encodeURIComponent(service.title)}`} class="btn btn-outline">
+                  Más Información
+                </a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="services-cta">
+    <div class="container">
+      <div class="cta-content">
+        <h2>¿No encuentras lo que necesitas?</h2>
+        <p>Contáctanos y cuéntanos sobre tu proyecto. Estamos seguros de que podemos ayudarte.</p>
+        <a href="/contacto" class="btn btn-light">Contáctanos Ahora</a>
+      </div>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  /* Page Header */
+  .page-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/images/services-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 8rem 0 4rem;
+    position: relative;
+  }
+  
+  .page-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: white;
+  }
+  
+  .breadcrumb {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .breadcrumb a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .breadcrumb a:hover {
+    color: white;
+  }
+  
+  .breadcrumb span {
+    opacity: 0.7;
+  }
+  
+  /* Services Grid Section */
+  .services-grid-section {
+    padding: 6rem 0;
+    background-color: #f9fafb;
+  }
+  
+  .section-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 4rem;
+  }
+  
+  .section-intro h2 {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .section-intro h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent);
+  }
+  
+  .section-intro p {
+    color: var(--gray);
+    font-size: 1.1rem;
+    line-height: 1.7;
+  }
+  
+  .services-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem;
+  }
+  
+  .service-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+  }
+  
+  .service-card-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  
+  .service-image {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+  }
+  
+  .service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .service-card:hover .service-image img {
+    transform: scale(1.05);
+  }
+  
+  .service-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .service-card:hover .service-overlay {
+    opacity: 1;
+  }
+  
+  .service-content {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .service-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .service-content h3 {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+  }
+  
+  .service-content p {
+    color: var(--gray);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    flex-grow: 1;
+  }
+  
+  .service-features {
+    margin: 1.5rem 0;
+    padding-left: 1.2rem;
+  }
+  
+  .service-features li {
+    margin-bottom: 0.5rem;
+    color: var(--gray);
+    position: relative;
+    padding-left: 1.5rem;
+  }
+  
+  .service-features li::before {
+    content: '✓';
+    color: var(--accent);
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+  }
+  
+  .btn-outline {
+    align-self: flex-start;
+    margin-top: auto;
+  }
+  
+  /* CTA Section */
+  .services-cta {
+    background: linear-gradient(135deg, var(--primary) 0%, #1a2639 100%);
+    color: white;
+    text-align: center;
+    padding: 6rem 0;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .services-cta::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/pattern.png');
+    opacity: 0.05;
+    z-index: 1;
+  }
+  
+  .cta-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .services-cta h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: white;
+  }
+  
+  .services-cta p {
+    font-size: 1.2rem;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .btn-light {
+    background-color: white;
+    color: var(--primary);
+    border: 2px solid white;
+    padding: 0.8rem 2.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-light:hover {
+    background-color: transparent;
+    color: white;
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 1200px) {
+    .services-container {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .page-header {
+      padding: 6rem 0 3rem;
+    }
+    
+    .page-header h1 {
+      font-size: 2.5rem;
+    }
+    
+    .section-intro h2 {
+      font-size: 2.2rem;
+    }
+    
+    .services-cta h2 {
+      font-size: 2.2rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .services-container {
+      grid-template-columns: 1fr;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .page-header h1 {
+      font-size: 2.2rem;
+    }
+    
+    .section-intro h2 {
+      font-size: 2rem;
+    }
+    
+    .services-cta h2 {
+      font-size: 2rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .page-header {
+      padding: 5rem 0 2.5rem;
+    }
+    
+    .page-header h1 {
+      font-size: 1.8rem;
+    }
+    
+    .breadcrumb {
+      font-size: 1rem;
+    }
+    
+    .section-intro h2 {
+      font-size: 1.8rem;
+    }
+    
+    .section-intro p {
+      font-size: 1rem;
+    }
+    
+    .services-cta h2 {
+      font-size: 1.8rem;
+    }
+    
+    .services-cta p {
+      font-size: 1.1rem;
+    }
+  }
+</style>

@@ -1,0 +1,184 @@
+---
+---
+<header class="navbar">
+  <div class="container">
+    <a href="/" class="logo">Jonathan <span>Roofing</span></a>
+
+    <button class="mobile-menu-btn" aria-label="Menú" aria-expanded="false" aria-controls="nav-links">
+      <span class="menu-icon"></span>
+    </button>
+
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/" class="nav-link">Inicio</a></li>
+      <li><a href="/servicios" class="nav-link">Servicios</a></li>
+      <li><a href="/nosotros" class="nav-link">Nosotros</a></li>
+      <li><a href="/contacto" class="nav-link">Contacto</a></li>
+      <li class="cta"><a href="tel:+1234567890" class="btn-primary">Cotización Gratis</a></li>
+    </ul>
+  </div>
+</header>
+
+<style>
+  :root {
+    --green: #28a745;
+    --dark: #374151;
+    --light: #ffffff;
+  }
+
+  .navbar {
+    background: var(--light);
+    border-bottom: 1px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+  }
+  .navbar .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0.75rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--green);
+    text-decoration: none;
+  }
+  .logo span {
+    color: var(--dark);
+  }
+
+  /* Nav Links */
+  .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+  }
+  .nav-link {
+    color: var(--dark);
+    text-decoration: none;
+    font-weight: 500;
+    position: relative;
+  }
+  .nav-link::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--green);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s;
+  }
+  .nav-link:hover::after,
+  .nav-link:focus::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  /* CTA */
+  .btn-primary {
+    background: var(--green);
+    color: var(--light);
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    transition: background 0.3s;
+    display: inline-block;
+  }
+  .btn-primary:hover {
+    background: #218838;
+  }
+  .cta {
+    margin-left: 0.5rem;
+  }
+
+  /* Mobile */
+  .mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+  }
+  .menu-icon,
+  .menu-icon::before,
+  .menu-icon::after {
+    display: block;
+    width: 26px;
+    height: 3px;
+    background: var(--green);
+    position: relative;
+    transition: all 0.3s;
+  }
+  .menu-icon::before,
+  .menu-icon::after {
+    content: "";
+    position: absolute;
+    left: 0;
+  }
+  .menu-icon::before {
+    top: -8px;
+  }
+  .menu-icon::after {
+    top: 8px;
+  }
+  .mobile-menu-btn[aria-expanded="true"] .menu-icon {
+    background: transparent;
+  }
+  .mobile-menu-btn[aria-expanded="true"] .menu-icon::before {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+  .mobile-menu-btn[aria-expanded="true"] .menu-icon::after {
+    transform: rotate(-45deg) translate(5px, -5px);
+  }
+  @media (max-width: 992px) {
+    .mobile-menu-btn {
+      display: block;
+    }
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 75%;
+      max-width: 300px;
+      height: 100vh;
+      background: var(--light);
+      flex-direction: column;
+      gap: 1.5rem;
+      padding: 5rem 2rem;
+      transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    .nav-links.active {
+      right: 0;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const menuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.getElementById('nav-links');
+    if (menuBtn && navLinks) {
+      menuBtn.addEventListener('click', () => {
+        const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+        menuBtn.setAttribute('aria-expanded', (!expanded).toString());
+        navLinks.classList.toggle('active');
+      });
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          navLinks.classList.remove('active');
+          menuBtn.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  });
+</script>
