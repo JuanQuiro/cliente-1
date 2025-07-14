@@ -1,11 +1,11 @@
-// Mobile menu toggle
+// --- Lógica de menú móvil eliminada; se maneja dentro de Navbar.astro ---
 document.addEventListener('DOMContentLoaded', () => {
-  const menuBtn = document.querySelector('.mobile-menu-btn');
-  const navLinks = document.querySelector('.nav-links');
-  const navItems = document.querySelectorAll('.nav-item');
+  // (removido) const menuBtn = document.querySelector('.mobile-menu-btn');
+  // (removido) const navLinks = document.querySelector('.nav-links');
+  // (removido) const navItems = document.querySelectorAll('.nav-item');
   
-  // Toggle mobile menu
-  if (menuBtn && navLinks) {
+  // --- Fin bloque eliminado ---
+  /* bloque eliminado */ if (false) {
     menuBtn.addEventListener('click', () => {
       navLinks.classList.toggle('active');
       menuBtn.setAttribute('aria-expanded', 
