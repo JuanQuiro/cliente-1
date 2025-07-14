@@ -31,7 +31,7 @@ const pageDescription = 'Servicios profesionales de mantenimiento para tu hogar 
           <a href="/contacto" class="btn btn-outline">Solicitar Cotización</a>
         </div>
       </div>
-      <div class="hero-gallery">
+      <div class="hero-gallery ">
         <img src="/images/image-hero/hero-1.jpeg" class="gallery-img" alt="Proyecto 1" />
         <img src="/images/image-hero/hero-2.jpeg" class="gallery-img" alt="Proyecto 2" />
         <img src="/images/image-hero/hero-3.jpeg" class="gallery-img" alt="Proyecto 3" />
@@ -46,9 +46,41 @@ const pageDescription = 'Servicios profesionales de mantenimiento para tu hogar 
 
   <!-- About Section -->
   <section class="about-section">
-    <div class="container">
-      <h2>¿Por qué elegirnos?</h2>
-      <p>Somos un equipo con años de experiencia en techado, pintura y paisajismo. Trabajamos con materiales de primera calidad y un enfoque 100 % en la satisfacción del cliente, ofreciendo resultados duraderos y estéticamente superiores.</p>
+    <div class="container about-grid">
+      <!-- Card Sobre Nosotros -->
+      <div class="about-card">
+        <h3><span class="highlight">SOBRE NOSOTROS</span></h3>
+        <p>En <strong>Jonathan Roofing and Landscaping</strong>, nos especializamos en transformar y mantener espacios exteriores con soluciones integrales para hogares y negocios en Puerto Rico.</p>
+        <p>Nuestro enfoque combina calidad, experiencia local y atención personalizada.</p>
+        <ul class="about-list">
+          <li>Servicios completos desde el diseño hasta el mantenimiento continuo</li>
+          <li>Técnicas probadas con herramientas profesionales (STIHL, ILLEGNO, OBERNARD)</li>
+          <li>Compromiso con Puerto Rico, mejorando entornos residenciales y comerciales</li>
+        </ul>
+      </div>
+
+      <!-- Beneficios directos -->
+      <div class="benefit-card">
+          <i class="fas fa-map-marker-alt icon"></i>
+          <h4>Experiencia Local</h4>
+          <p>Años sirviendo a comunidades puertorriqueñas y conocimiento profundo de sus necesidades climáticas y estructurales.</p>
+        </div>
+        <div class="benefit-card">
+          <i class="fas fa-check-circle icon"></i>
+          <h4>Calidad Garantizada</h4>
+          <p>Equipos industriales y materiales premium; sellado de techos con garantía incluida.</p>
+        </div>
+        <div class="benefit-card">
+          <i class="fas fa-tools icon"></i>
+          <h4>Soluciones Prácticas</h4>
+          <p>Resolución eficiente de problemas (empozamientos, grietas, jardines descuidados) y mantenimiento preventivo para ahorrar costos.</p>
+        </div>
+        <div class="benefit-card">
+          <i class="fas fa-headset icon"></i>
+          <h4>Atención al Cliente</h4>
+          <p>Servicio cercano y dedicado, adaptado a las necesidades de cada proyecto.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -142,10 +174,10 @@ const pageDescription = 'Servicios profesionales de mantenimiento para tu hogar 
           </div>
           
           <div class="social-links">
-            <a href="#" class="social-link" aria-label="Facebook">
+            <a href="https://www.facebook.com/share/v/1CGUbDV77U/?mibextid=wwXIfr" class="social-link" aria-label="Facebook">
               <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="#" class="social-link" aria-label="Instagram">
+            <a class="hidden" href="#" class="social-link" aria-label="Instagram">
               <i class="fab fa-instagram"></i>
             </a>
             <a href="#" class="social-link" aria-label="WhatsApp">
@@ -205,11 +237,30 @@ const pageDescription = 'Servicios profesionales de mantenimiento para tu hogar 
     .hero h1 { font-size: clamp(3rem, 6vw, 4.5rem); font-weight: 800; margin-bottom: 1rem; line-height: 1.1; }
     .hero p { font-size: 1.125rem; max-width: 700px; margin-bottom: 2rem; }
 
+    /* About Section redesigned */
+    .about-card { background:#fff; border:2px solid #d1d5db; border-radius:0.75rem; padding:2rem; box-shadow:0 2px 6px rgba(0,0,0,.04); grid-row: span 2; }
+    .about-card h3 { font-size:2rem; margin-bottom:1.25rem; letter-spacing:0.5px; }
+    .about-card .highlight { color:#28a745; }
+
+    .about-grid { display:grid; gap:2rem; } /* base mobile */
+    @media(min-width:768px){ .about-grid{ grid-template-columns:repeat(3,1fr); } .about-card{ grid-row:span 2; } }
+    @media(min-width:1024px){ .about-grid{ grid-template-columns:1.2fr 1fr 1fr; } }
+    .benefit-card { background:#fff; border:1px solid #e5e7eb; border-radius:0.75rem; padding:1.5rem; box-shadow:0 1px 4px rgba(0,0,0,.03); text-align:left; transition:transform .3s, box-shadow .3s; cursor:default; position:relative; overflow:hidden; }
+    .benefit-card .icon { font-size:1.75rem; color:#28a745; margin-bottom:0.75rem; }
+    .benefit-card h4 { font-size:1.125rem; font-weight:700; margin-bottom:0.5rem; }
+    .benefit-card p { font-size:0.95rem; line-height:1.4; }
+    .benefit-card:hover { transform:translateY(-6px); box-shadow:0 8px 24px rgba(0,0,0,.08); }
+    .benefit-card:hover .icon { transform:scale(1.1) rotate(-5deg); }
+    .benefit-card .icon { transition:transform .3s; }
+    .about-list { margin-top:1rem; padding-left:1.25rem; list-style:none; }
+    .about-list li { position:relative; margin-bottom:0.5rem; padding-left:1.25rem; font-size:0.95rem; }
+    .about-list li::before { content:"\f00c"; font-family:"Font Awesome 5 Free"; font-weight:900; color:#28a745; position:absolute; left:0; }
+
     /* About Section */
-    .about-section { padding: 5rem 1rem; background: #f9fafb; }
-    .about-section .container { max-width: 1000px; margin: 0 auto; text-align: center; }
-    .about-section h2 { font-size: 2rem; margin-bottom: 1rem; }
-    .about-section p { font-size: 1.1rem; max-width: 800px; margin: 0 auto; }
+    .about-section { padding:3rem 0; background:#f9fafb; }
+    
+    .about-section h2 { font-size:2.5rem; margin-bottom:2rem; text-align:center; color:#000; }
+    
 
     /* Featured Services */
     .featured-services { padding: 5rem 1rem; }
@@ -226,7 +277,7 @@ const pageDescription = 'Servicios profesionales de mantenimiento para tu hogar 
 
     .hero-buttons { display:flex; gap:1.25rem; flex-wrap:wrap; justify-content:center; margin-top:2rem; }
 
-    .hero-features { display:flex; flex-wrap:wrap; gap:1.25rem; justify-content:center; margin:1.5rem 0 2rem; color:#fff; font-weight:600; }
+    .hero-features { display:flex; flex-wrap:wrap; gap:0.1rem; justify-content:center; margin:1.5rem 0 2rem; color:#fff; font-weight:600; }
     .hero-features li { list-style:none; }
     .hero-features li::before { content:'•'; margin-right:0.5rem; }
     .hero h1 .highlight { color:#28a745; font-size:clamp(3.5rem,8vw,6rem); font-style:italic; line-height:1; display:block; text-shadow:1px 1px 3px rgba(0,0,0,0.2); }
@@ -242,7 +293,7 @@ const pageDescription = 'Servicios profesionales de mantenimiento para tu hogar 
     @media(min-width:992px) {
       .hero .container { flex-direction: row; justify-content: space-between; align-items: center; column-gap: 4rem; }
       .hero-content { max-width:560px; text-align:left; }
-      .hero-gallery { display:grid; margin-top:0; justify-self:flex-end; }
+      .hero-gallery { display:grid; margin-top:0; align-self:flex-start; justify-self:flex-end; transform:translateY(-20px);} 
     }
 
     /* Breakpoints: XS (<576), SM (≥576), MD (≥768), LG (≥992), XL (≥1200) */
@@ -268,7 +319,7 @@ const pageDescription = 'Servicios profesionales de mantenimiento para tu hogar 
       .hero-gallery .gallery-img { height:140px; }
       .hero .container { flex-direction:row; align-items:center; text-align:left; column-gap: 3rem; }
       .hero-content { max-width:460px; }
-      .hero-gallery { display:grid; width:100%; max-width:420px; margin-top:0; }
+      .hero-gallery { display:grid; width:100%; max-width:420px; margin-top:0; align-self:flex-start; transform:translateY(-10px);} 
       .hero-gallery .gallery-img { width:130px; height:100px; border-width:3px; }
       
       
