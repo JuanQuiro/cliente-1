@@ -57,10 +57,11 @@ const { service } = Astro.props;
     </button>
 
     <!-- Modal injected when open -->
-    <template x-if="open">
-        <div>
-          <ServiceModal service={service} />
-        </div>
-      </template>
+    <!-- Modal teleported to <body>; hidden until 'open' is true -->
+    <template x-teleport="body">
+      <div x-cloak x-show="open" style="display:none;">
+        <ServiceModal service={service} />
+      </div>
+    </template>
   </div>
 </div>
