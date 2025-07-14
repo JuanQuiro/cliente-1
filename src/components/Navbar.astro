@@ -11,12 +11,14 @@
     </button>
 
     <ul class="nav-links" id="nav-links">
+      <li class="close-btn"><button class="close-menu-btn" aria-label="Cerrar menú">&times;</button></li>
       <li><a href="/" class="nav-link">Inicio</a></li>
       <li><a href="/servicios" class="nav-link">Servicios</a></li>
       <li><a href="/nosotros" class="nav-link">Nosotros</a></li>
       <li><a href="/contacto" class="nav-link">Contacto</a></li>
       <li class="cta"><a href="tel:+1234567890" class="btn-primary">Cotización Gratis</a></li>
     </ul>
+    <div class="nav-overlay" id="nav-overlay"></div>
   </div>
 </header>
 
@@ -168,6 +170,36 @@
       transform: translateX(0);
     }
   }
+  /* Overlay */
+  .nav-overlay{
+    position:fixed;
+    top:0;left:0;
+    width:100%;height:100vh;
+    background:rgba(0,0,0,0.5);
+    opacity:0;
+    visibility:hidden;
+    transition:opacity 0.35s ease;
+    z-index:9998;
+  }
+  .nav-overlay.active{
+    opacity:1;
+    visibility:visible;
+  }
+  /* Close button */
+  .close-menu-btn{
+    position:absolute;
+    top:1rem;
+    right:1rem;
+    background:none;
+    border:none;
+    font-size:2rem;
+    color:var(--dark);
+    line-height:1;
+    cursor:pointer;
+  }
+  @media (min-width:993px){
+    .close-menu-btn{display:none;}
+  }
 </style>
 
 <script is:inline>
@@ -176,16 +208,27 @@
     if (!navbar) return;
     const menuBtn = navbar.querySelector('.mobile-menu-btn');
     const navLinks = navbar.querySelector('#nav-links');
+    const overlay = document.getElementById('nav-overlay');
+    const closeBtn = navLinks.querySelector('.close-menu-btn');
     if (!menuBtn || !navLinks) return;
 
     const toggleMenu = () => {
       const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
       menuBtn.setAttribute('aria-expanded', (!expanded).toString());
       navLinks.classList.toggle('active');
+      if (overlay) overlay.classList.toggle('active');
       document.body.classList.toggle('overflow-hidden', !expanded);
     };
 
     menuBtn.addEventListener('click', toggleMenu);
+    if (overlay) overlay.addEventListener('click', toggleMenu);
+    if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
+    // Cerrar con tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
     navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
       navLinks.classList.remove('active');
       menuBtn.setAttribute('aria-expanded', 'false');
