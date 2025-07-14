@@ -1,0 +1,64 @@
+---
+import ServiceModal from './ServiceModal.astro';
+const { service } = Astro.props;
+---
+
+<!-- Service Card with Alpine.js modal trigger -->
+<div
+  x-data="{ open: false }"
+  class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transform transition-all duration-300 overflow-hidden flex flex-col h-full hover:-translate-y-1 hover:ring-2 hover:ring-offset-2 hover:ring-green-500"
+>
+  <!-- Card Image -->
+  <div class="relative aspect-[4/3] overflow-hidden">
+    <img
+      src={service.images[0]}
+      alt={service.title}
+      loading="lazy"
+      class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+    />
+    <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+    <div class="absolute top-4 right-4">
+      <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-white/90 text-2xl shadow-lg">
+        {service.icon}
+      </span>
+    </div>
+    <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+      <h3 class="text-2xl text-white  mb-2 font-black">{service.title}</h3>
+      <p class="text-white/90 line-clamp-2">{service.description}</p>
+    </div>
+  </div>
+
+  <!-- Card Body -->
+  <div class="p-6 flex flex-col flex-grow">
+    <h4 class="font-semibold text-gray-800 mb-3 flex items-center">
+      <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+        <path
+          fill-rule="evenodd"
+          d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      Incluye:
+    </h4>
+    <ul class="space-y-1 mb-4 text-sm text-gray-600">
+      {service.features.slice(0, 4).map((f) => (
+        <li>• {f}</li>
+      ))}
+      {service.features.length > 4 && (
+        <li class="text-green-500 font-medium">+{service.features.length - 4} más</li>
+      )}
+    </ul>
+
+    <button
+      @click="open = true"
+      class="mt-auto px-6 py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-[1.02] shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-600"
+    >
+      Ver Detalles
+    </button>
+
+    <!-- Modal injected when open -->
+    <template x-if="open">
+      <ServiceModal service={service} @close.window="open = false" />
+    </template>
+  </div>
+</div>

@@ -1,0 +1,141 @@
+---
+// Modal que muestra información detallada del servicio
+// Renderiza todo el contenido con Astro para evitar errores de compilación.
+const { service } = Astro.props;
+---
+
+<!-- Overlay y panel -->
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
+  x-data="{ open: true }"
+  x-show="open"
+  x-transition.opacity
+  @keydown.escape.window="open = false; $dispatch('close')"
+  @click.self="open = false; $dispatch('close')"
+>
+  <div
+    class="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row"
+    x-transition.scale.origin.center
+  >
+    <!-- Botón cerrar -->
+    <button
+      @click="open = false; $dispatch('close')"
+      class="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/90 hover:bg-gray-100 transition-colors shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+      aria-label="Cerrar"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6 text-gray-600"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <!-- Imagen principal -->
+    <div
+      class="w-full md:w-1/2 h-64 md:h-auto bg-gray-100 overflow-hidden flex items-center justify-center"
+    >
+      <img
+        src={service.images?.[0] ?? "/images/placeholder.jpg"}
+        alt={service.title}
+        class="w-full h-full object-cover"
+      />
+    </div>
+
+    <!-- Contenido -->
+    <div class="w-full md:w-1/2 p-6 md:p-8 overflow-y-auto">
+      <!-- Cabecera -->
+      <div class="flex items-center space-x-3 mb-4">
+        {service.icon && <span class="text-3xl">{service.icon}</span>}
+        <h2 class="text-2xl font-bold text-gray-900">{service.title}</h2>
+      </div>
+
+      <!-- Descripción -->
+      {
+        service.fullDescription || service.description ? (
+          <p class="text-gray-700 mb-6 leading-relaxed">
+            {service.fullDescription || service.description}
+          </p>
+        ) : null
+      }
+
+      <!-- Lista de características -->
+      {
+        service.features?.length ? (
+          <div class="mb-6">
+            <h3 class="font-semibold text-lg text-gray-800 mb-3">
+              Nuestro servicio incluye:
+            </h3>
+            <ul class="space-y-2">
+              {service.features.map((feature) => (
+                <li class="flex items-start" key={feature}>
+                  <svg
+                    class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null
+      }
+
+      <!-- Por qué elegirnos -->
+      {
+        service.whyChooseUs?.length ? (
+          <div class="mb-6">
+            <h3 class="font-semibold text-lg text-gray-800 mb-3">
+              ¿Por qué elegirnos?
+            </h3>
+            <ul class="space-y-2">
+              {service.whyChooseUs.map((reason: string) => (
+                <li class="flex items-start" key={reason}>
+                  <span class="text-yellow-500 mr-2">🔹</span>
+                  <span>{reason}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null
+      }
+
+      <!-- Información adicional -->
+      {
+        service.additionalInfo && (
+          <div class="mb-6 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
+            <p class="text-blue-700 italic">{service.additionalInfo}</p>
+          </div>
+        )
+      }
+
+      <!-- CTA -->
+      <a
+        href="/contacto"
+        class="mt-4 inline-flex items-center justify-center px-6 py-3 w-full text-base font-semibold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
+      >
+        CONTACTANOS AHORA
+        <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+          <path
+            fill-rule="evenodd"
+            d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
+            clip-rule="evenodd"></path>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
