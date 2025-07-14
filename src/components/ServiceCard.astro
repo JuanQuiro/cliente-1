@@ -5,7 +5,7 @@ const { service } = Astro.props;
 
 <!-- Service Card with Alpine.js modal trigger -->
 <div
-  x-data="{ open: false }"
+  x-data="{ open: false }" x-on:close.window="open = false"
   class="group relative bg-white rounded-2xl shadow-lg hover:shadow-xl transform transition-all duration-300 overflow-hidden flex flex-col h-full hover:-translate-y-1 hover:ring-2 hover:ring-offset-2 hover:ring-green-500"
 >
   <!-- Card Image -->
@@ -58,7 +58,9 @@ const { service } = Astro.props;
 
     <!-- Modal injected when open -->
     <template x-if="open">
-      <ServiceModal service={service} @close.window="open = false" />
-    </template>
+        <div>
+          <ServiceModal service={service} />
+        </div>
+      </template>
   </div>
 </div>
