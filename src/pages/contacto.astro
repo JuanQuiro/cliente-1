@@ -5,7 +5,7 @@ const pageTitle = 'Contáctenos';
 const pageDescription = 'Ponte en contacto con nuestro equipo. Estamos aquí para responder a todas tus preguntas.';
 
 const contactInfo = [
-  { icon: 'fas fa-map-marker-alt', title: 'Dirección', content: '123 Calle Principal, Ciudad, País', link: 'https://maps.google.com' },
+  { icon: 'fas fa-map-marker-alt', title: 'Dirección', content: 'Barranquitas, Puerto Rico', link: 'https://www.openstreetmap.org/#map=14/18.1869/-66.3129' },
   { icon: 'fas fa-phone-alt', title: 'Teléfono', content: '+1 (939) 263-4528', link: 'tel:19392634528' },
   { icon: 'fas fa-envelope', title: 'Correo Electrónico', content: 'jonathanroofingandlandscaping@gmail.com', link: 'mailto:jonathanroofingandlandscaping@gmail.com' },
   { icon: 'fas fa-clock', title: 'Horario', content: 'Lun-Vie: 8:00 AM - 6:00 PM\nSáb: 9:00 AM - 2:00 PM', link: '' }
@@ -343,14 +343,14 @@ const formFields = [
     // Mapa Leaflet
     const mapEl = document.getElementById('map');
     if (mapEl && typeof L !== 'undefined') {
-      const location: [number, number] = [18.4655, -66.1057];
+      const location: [number, number] = [18.1869, -66.3129];
       const apiKey = import.meta.env.PUBLIC_THUNDERFOREST_API_KEY || '154b7c6250724292ab60fdac2ff0669c';
       const map = L.map(mapEl).setView(location, 13);
       L.tileLayer(`https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=${apiKey}`, {
         attribution: '&copy; OpenStreetMap contributors & Thunderforest',
         maxZoom: 22,
       }).addTo(map);
-      L.marker(location).addTo(map).bindPopup('Nuestra ubicación').openPopup();
+      L.marker(location).addTo(map).bindPopup('Barranquitas, Puerto Rico').openPopup();
     }
 
     // Formulario
