@@ -11,4 +11,9 @@ export default defineConfig({
     sitemap(), 
     tailwind({}),
   ],
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp'
+    }
+  }
 });

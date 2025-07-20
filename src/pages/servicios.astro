@@ -1,7 +1,16 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import heroBg from '../assets/image-hero-index/hero-uno.jpg';
 import '../styles/global.css'; // aseguramos que Tailwind se cargue
 import ServiceCard from '../components/ServiceCard.astro';
+
+// Importar imágenes para los servicios
+import servicePlaceholder1 from '../assets/servicios/hero.jpeg';
+import servicePlaceholder2 from '../assets/servicios/hero.jpeg';
+import servicePlaceholder3 from '../assets/servicios/hero.jpeg';
+import servicePlaceholder4 from '../assets/servicios/hero.jpeg';
+import servicePlaceholder5 from '../assets/servicios/hero.jpeg';
+import servicePlaceholderAbout from '../assets/servicios/hero.jpeg';
 
 const pageTitle = 'Nuestros Servicios Premium';
 const pageDescription = 'Soluciones profesionales de mantenimiento y mejoras para tu hogar o negocio en Puerto Rico.';
@@ -14,8 +23,8 @@ const allServices = [
     description: 'Transformamos tus espacios exteriores en áreas verdes saludables, vibrantes y bien cuidadas.',
     fullDescription: 'En Jonathan Roofing and Landscaping, transformamos tus espacios exteriores en áreas verdes saludables, vibrantes y bien cuidadas, adaptadas al clima tropical de Puerto Rico.',
     images: [
-      '/images/image-servicios/areas-verdes.jpeg',
-      '/images/image-servicios/areas-verdes2.jpeg'
+      servicePlaceholder1.src,
+      servicePlaceholder2.src
     ],
     features: [
       'Corte profesional de grama con equipos STIHL',
@@ -38,9 +47,9 @@ const allServices = [
     description: 'Paquete todo-en-uno que alarga la vida de su techo: limpieza + sellado premium.',
     fullDescription: 'Limpieza profunda que protege y prolonga la vida útil de su techo, seguida de un sellado flexible resistente a huracanes.',
     images: [
-      '/images/image-servicios/techo.jpeg',
-      '/images/image-servicios/techo1.jpeg',
-      '/images/image-servicios/techo2.jpeg'
+      servicePlaceholder3.src,
+      servicePlaceholder4.src,
+      servicePlaceholder5.src
     ],
     features: [
       'Eliminación de musgo, algas y residuos',
@@ -57,9 +66,9 @@ const allServices = [
     description: 'Soluciones rápidas y prácticas para mantener tu propiedad en óptimas condiciones.',
     fullDescription: 'Arreglamos, instalamos y mejoramos cualquier espacio: reparaciones express y remodelaciones prácticas.',
     images: [
-      '/images/image-servicios/lavado-impermeabilizacion-handyman.jpeg',
-      '/images/image-servicios/lavado-impermeabilizacion-handyman1.jpeg',
-      '/images/image-servicios/lavado-impermeabilizacion-handyman3.jpeg'
+      servicePlaceholderAbout.src,
+      servicePlaceholder1.src,
+      servicePlaceholder2.src
     ],
     features: [
       'Goteras, grietas y plomería básica',
@@ -75,7 +84,7 @@ const allServices = [
     description: 'Renovación profesional de espacios interiores y exteriores en 48 horas.',
     fullDescription: 'Transformamos sus paredes con acabados premium y asesoría en colores y tendencias.',
     images: [
-      '/images/image-servicios/techo2.jpeg'
+      servicePlaceholder3.src
     ],
     features: [
       'Pintura interior/exterior de alta calidad',
@@ -90,7 +99,7 @@ const allServices = [
 <MainLayout title={pageTitle} description={pageDescription}>
   <!-- Hero -->
   <section class="relative isolate overflow-hidden h-[80vh] flex items-center justify-center text-center text-white">
-    <img src="/optimized-images/image-hero/hero-fondo-1200w.avif" alt="Servicios" class="absolute inset-0 -z-10 h-full w-full object-cover" />
+    <img src={heroBg.src} alt="Servicios" class="absolute inset-0 -z-10 h-full w-full object-cover" />
     <div class="absolute inset-0 -z-10 bg-gradient-to-br from-black/80 via-black/50 to-black/80"></div>
 
     <div class="px-6">

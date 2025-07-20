@@ -1,5 +1,6 @@
 ---
 // Modal que muestra información detallada del servicio
+import placeholderImg from '../assets/image-hero-index/hero-tres.jpg';
 // Renderiza todo el contenido con Astro para evitar errores de compilación.
 const { service } = Astro.props;
 ---
@@ -40,7 +41,7 @@ const { service } = Astro.props;
       class="w-full md:w-1/2 h-64 md:h-auto bg-gray-100 overflow-hidden flex items-center justify-center"
     >
       <img
-        src={service.images?.[0] ?? "/optimized-images/placeholder-600w.avif"}
+        src={service.images?.[0] ?? placeholderImg.src}
         alt={service.title}
         class="w-full h-full object-cover"
       />

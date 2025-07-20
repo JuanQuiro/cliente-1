@@ -1,8 +1,9 @@
 // --- Lógica de menú móvil eliminada; se maneja dentro de Navbar.astro ---
 document.addEventListener('DOMContentLoaded', () => {
   // (removido) const menuBtn = document.querySelector('.mobile-menu-btn');
-  // (removido) const navLinks = document.querySelector('.nav-links');
-  // (removido) const navItems = document.querySelectorAll('.nav-item');
+  const menuBtn  = document.querySelector('.mobile-menu-btn');
+  const navLinks = document.querySelector('.nav-links');
+  const navItems = document.querySelectorAll('.nav-item');
   
   // --- Fin bloque eliminado ---
   /* bloque eliminado */ if (false) {
