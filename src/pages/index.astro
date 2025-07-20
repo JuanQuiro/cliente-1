@@ -17,10 +17,12 @@ const pageDescription = 'Servicios profesionales de mantenimiento para tu hogar 
     const hero = document.querySelector('.hero');
     if (hero) {
       // Ensure the hero has immediate visual content
-      hero.style.backgroundImage = `
-        linear-gradient(135deg, rgba(26, 77, 58, 0.8) 0%, rgba(45, 90, 61, 0.7) 50%, rgba(26, 77, 58, 0.8) 100%),
+      hero.style.backgroundImage = `url('/optimized-images/image-hero-index/hero-uno-800w.avif')`;
+      /* Previous gradient overlay removed for full transparency */
+      /*
+
         url('/optimized-images/image-hero-index/hero-uno-800w.avif')
-      `;
+      */
       hero.style.backgroundSize = 'cover';
       hero.style.backgroundPosition = 'center';
       hero.style.backgroundRepeat = 'no-repeat';
@@ -51,10 +53,10 @@ const pageDescription = 'Servicios profesionales de mantenimiento para tu hogar 
       min-height: 100vh;
       position: relative;
       /* Fallback gradient background for instant display */
-      background: linear-gradient(135deg, #1a4d3a 0%, #2d5a3d 50%, #1a4d3a 100%);
+      background: linear-gradient(135deg, rgba(26, 77, 58, 0) 0%, rgba(45, 90, 61, 0) 50%, rgba(26, 77, 58, 0) 100%);
       /* Fallback image that loads immediately */
       background-image: 
-        linear-gradient(135deg, rgba(26, 77, 58, 0.8) 0%, rgba(45, 90, 61, 0.7) 50%, rgba(26, 77, 58, 0.8) 100%),
+        linear-gradient(135deg, rgba(26, 77, 58, 0) 0%, rgba(45, 90, 61, 0) 50%, rgba(26, 77, 58, 0) 100%),
         url('/optimized-images/image-hero-index/hero-uno-800w.avif');
       background-size: cover;
       background-position: center;
@@ -526,7 +528,7 @@ const pageDescription = 'Servicios profesionales de mantenimiento para tu hogar 
       left: 0;
       right: 0;
       height: 4px;
-      background: rgba(26, 77, 58, 0.35);
+      background: transparent;
       z-index: 10;
     }
     
@@ -572,11 +574,8 @@ const pageDescription = 'Servicios profesionales de mantenimiento para tu hogar 
       }
       
       .hero::before {
-        background: linear-gradient(135deg, 
-          rgba(var(--primary-rgb), 0.8) 0%, 
-          rgba(var(--primary-dark-rgb), 0.7) 40%,
-          rgba(0, 0, 0, 0.4) 100%);
-      }
+  background: transparent;
+}
       
       .slider-progress {
         height: 3px;
@@ -1545,7 +1544,7 @@ class HeroSlider {
       requestAnimationFrame(() => {
         // Update background with proper gradient overlay for brand consistency
         (this.heroSection as HTMLElement).style.backgroundImage = 
-          `linear-gradient(135deg, rgba(26, 77, 58, 0.8) 0%, rgba(45, 90, 61, 0.7) 50%, rgba(26, 77, 58, 0.8) 100%), url('${imageUrl}')`;
+          `url('${imageUrl}')`;
         
         // Add smooth transition class
         this.heroSection.classList.add('transitioning');
