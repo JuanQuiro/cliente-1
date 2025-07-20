@@ -1,0 +1,193 @@
+---
+// HeroSlider.astro - Componente separado para garantizar hidratación client-side
+---
+
+<div class="hero-slider-wrapper">
+  <script>
+    // Hero Slider con hidratación garantizada
+    class HeroSlider {
+      private heroSection: HTMLElement;
+      private slides: HTMLElement[];
+      private dots: HTMLElement[];
+      private prevArrow: HTMLElement;
+      private nextArrow: HTMLElement;
+      private progressBar: HTMLElement;
+      private currentIndex: number = 0;
+      private autoplayInterval: NodeJS.Timeout | null = null;
+      private config = {
+        autoplayDelay: 6000,
+        images: [
+          '/optimized-images/image-hero-index/hero-uno-800w.avif',
+          '/optimized-images/image-hero-index/hero-dos-800w.avif', 
+          '/optimized-images/image-hero-index/hero-tres-800w.avif'
+        ]
+      };
+
+      constructor() {
+        this.init();
+      }
+
+      private init(): void {
+        console.log('🚀 HeroSlider client-side initialization...');
+        
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', () => this.setup());
+        } else {
+          this.setup();
+        }
+      }
+
+      private setup(): void {
+        this.heroSection = document.querySelector('.hero') as HTMLElement;
+        if (!this.heroSection) {
+          console.error('❌ Hero section not found');
+          return;
+        }
+
+        this.setupElements();
+        this.setupProgressBar();
+        this.setupEventListeners();
+        this.startAutoplay();
+        
+        console.log('✅ HeroSlider fully hydrated and active');
+      }
+
+      private setupElements(): void {
+        this.slides = Array.from(this.heroSection.querySelectorAll('.hero-slide'));
+        this.dots = Array.from(this.heroSection.querySelectorAll('.slider-dot'));
+        this.prevArrow = this.heroSection.querySelector('.slider-arrow.prev') as HTMLElement;
+        this.nextArrow = this.heroSection.querySelector('.slider-arrow.next') as HTMLElement;
+      }
+
+      private setupProgressBar(): void {
+        // Find existing progress bar
+        this.progressBar = this.heroSection.querySelector('.slider-progress-bar') as HTMLElement;
+        
+        if (!this.progressBar) {
+          console.log('⚠️ Creating progress bar dynamically...');
+          this.createProgressBar();
+        }
+        
+        // Force initial state
+        this.updateProgressBar();
+        console.log('📊 Progress bar setup complete');
+      }
+
+      private createProgressBar(): void {
+        const progressContainer = document.createElement('div');
+        progressContainer.className = 'slider-progress';
+        progressContainer.style.cssText = `
+          position: absolute !important;
+          bottom: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          height: 6px !important;
+          background: rgba(0, 0, 0, 0.3) !important;
+          z-index: 20 !important;
+        `;
+
+        this.progressBar = document.createElement('div');
+        this.progressBar.className = 'slider-progress-bar';
+        this.progressBar.style.cssText = `
+          height: 100% !important;
+          background: linear-gradient(90deg, rgba(26, 77, 58, 0.9) 0%, rgba(45, 90, 61, 1) 50%, rgba(26, 77, 58, 0.9) 100%) !important;
+          width: 0% !important;
+          transition: width 0.3s ease !important;
+          box-shadow: 0 0 15px rgba(26, 77, 58, 0.8) !important;
+        `;
+
+        progressContainer.appendChild(this.progressBar);
+        this.heroSection.appendChild(progressContainer);
+      }
+
+      private updateProgressBar(): void {
+        if (!this.progressBar) return;
+        
+        const progressPercentage = ((this.currentIndex + 1) / this.config.images.length) * 100;
+        
+        // Force immediate visual update
+        requestAnimationFrame(() => {
+          this.progressBar.style.width = `${progressPercentage}%`;
+          console.log(`📊 Progress bar updated to ${progressPercentage.toFixed(1)}%`);
+        });
+      }
+
+      private setupEventListeners(): void {
+        // Arrows
+        if (this.prevArrow) {
+          this.prevArrow.addEventListener('click', () => this.prevSlide());
+        }
+        if (this.nextArrow) {
+          this.nextArrow.addEventListener('click', () => this.nextSlide());
+        }
+
+        // Dots
+        this.dots.forEach((dot, index) => {
+          dot.addEventListener('click', () => this.goToSlide(index));
+        });
+
+        // Keyboard
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'ArrowLeft') this.prevSlide();
+          if (e.key === 'ArrowRight') this.nextSlide();
+        });
+      }
+
+      private goToSlide(index: number): void {
+        this.currentIndex = index;
+        this.updateSlide();
+        this.updateDots();
+        this.updateProgressBar();
+        this.resetAutoplay();
+      }
+
+      private nextSlide(): void {
+        this.currentIndex = (this.currentIndex + 1) % this.config.images.length;
+        this.updateSlide();
+        this.updateDots();
+        this.updateProgressBar();
+        this.resetAutoplay();
+      }
+
+      private prevSlide(): void {
+        this.currentIndex = this.currentIndex === 0 ? this.config.images.length - 1 : this.currentIndex - 1;
+        this.updateSlide();
+        this.updateDots();
+        this.updateProgressBar();
+        this.resetAutoplay();
+      }
+
+      private updateSlide(): void {
+        const imageUrl = this.config.images[this.currentIndex];
+        this.heroSection.style.backgroundImage = `linear-gradient(135deg, rgba(26, 77, 58, 0.85) 0%, rgba(45, 90, 61, 0.75) 50%, rgba(26, 77, 58, 0.85) 100%), url('${imageUrl}')`;
+      }
+
+      private updateDots(): void {
+        this.dots.forEach((dot, index) => {
+          if (index === this.currentIndex) {
+            dot.classList.add('active');
+          } else {
+            dot.classList.remove('active');
+          }
+        });
+      }
+
+      private startAutoplay(): void {
+        this.autoplayInterval = setInterval(() => {
+          this.nextSlide();
+        }, this.config.autoplayDelay);
+      }
+
+      private resetAutoplay(): void {
+        if (this.autoplayInterval) {
+          clearInterval(this.autoplayInterval);
+          this.startAutoplay();
+        }
+      }
+    }
+
+    // Initialize slider when script loads
+    new HeroSlider();
+  </script>
+</div>
