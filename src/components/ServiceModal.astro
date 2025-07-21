@@ -1,139 +1,205 @@
 ---
-// Modal que muestra información detallada del servicio
-import placeholderImg from '../assets/image-hero-index/hero-tres.jpg';
-// Renderiza todo el contenido con Astro para evitar errores de compilación.
 const { service } = Astro.props;
 ---
 
-<!-- Overlay y panel -->
+<!-- Modal Overlay -->
 <div
-  class="fixed inset-0 z-[10000] flex items-center justify-center p-4 sm:p-6 md:p-8 bg-black/60 backdrop-blur-sm overflow-y-auto" x-data="{}" x-cloak x-transition.opacity 
-  @keydown.escape.window="$dispatch('close')" 
+  class="fixed inset-0 z-[10000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+  @keydown.escape.window="$dispatch('close')"
   @click.self="$dispatch('close')"
 >
+  <!-- Modal Content -->
   <div
-    class="relative w-full max-w-4xl sm:max-w-xl md:max-w-3xl lg:max-w-4xl max-h-[90vh] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row"
-    x-transition.scale.origin.center
+    class="bg-white rounded-2xl shadow-2xl max-w-7xl w-full max-h-[95vh] overflow-y-auto"
+    x-data="{
+      activeTab: 'info',
+      lightboxOpen: false,
+      lightboxImage: '',
+      lightboxIndex: 0,
+      images: [],
+      serviceTitle: ''
+    }"
+    x-init="images = JSON.parse($el.dataset.images); serviceTitle = $el.dataset.title;"
+    data-images={JSON.stringify(service.images || [])}
+    data-title={service.title}
+    @click.stop
   >
-    <!-- Botón cerrar -->
-    <button
-      @click="$dispatch('close')"
-      class="absolute top-4 right-4 z-10 p-2 rounded-full bg-white/90 hover:bg-gray-100 transition-colors shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
-      aria-label="Cerrar"
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        class="h-6 w-6 text-gray-600"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
+    <!-- Header -->
+    <div class="relative bg-gradient-to-r from-green-600 to-green-700 text-white p-6">
+      <button
+        @click="$dispatch('close')"
+        class="absolute top-4 right-4 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors"
+        aria-label="Cerrar modal"
       >
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M6 18L18 6M6 6l12 12"></path>
-      </svg>
-    </button>
-
-    <!-- Imagen principal -->
-    <div
-      class="w-full md:w-1/2 h-64 md:h-auto bg-gray-100 overflow-hidden flex items-center justify-center"
-    >
-      <img
-        src={service.images?.[0] ?? placeholderImg.src}
-        alt={service.title}
-        class="w-full h-full object-cover"
-      />
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+      
+      <h2 class="text-3xl font-bold mb-2 text-white">{service.title}</h2>
+      <p class="text-green-100 text-lg">{service.description}</p>
     </div>
 
-    <!-- Contenido -->
-    <div class="w-full md:w-1/2 p-6 md:p-8 overflow-y-auto">
-      <!-- Cabecera -->
-      <div class="flex items-center space-x-3 mb-4">
-        {service.icon && <span class="text-3xl">{service.icon}</span>}
-        <h2 class="text-2xl font-bold text-gray-900">{service.title}</h2>
+    <!-- Navigation Tabs -->
+    <div class="border-b border-gray-200">
+      <nav class="flex px-6" aria-label="Tabs">
+        <button
+          @click="activeTab = 'info'"
+          :class="activeTab === 'info' ? 'border-green-500 text-green-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+          class="py-4 px-1 border-b-2 font-medium text-sm mr-8 transition-colors"
+        >
+          Información
+        </button>
+        <button
+          @click="activeTab = 'gallery'"
+          :class="activeTab === 'gallery' ? 'border-green-500 text-green-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
+          class="py-4 px-1 border-b-2 font-medium text-sm transition-colors"
+        >
+          Galería de Trabajos (<span x-text="images.length"></span>)
+        </button>
+      </nav>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="p-6">
+      <!-- Info Tab -->
+      <div x-show="activeTab === 'info'" x-transition>
+        <!-- Service Description -->
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">Descripción del Servicio</h3>
+          <p class="text-gray-700 leading-relaxed text-lg">{service.longDescription || service.description}</p>
+        </div>
+
+        <!-- Features Grid -->
+        {service.features && service.features.length > 0 && (
+        <div class="mb-8">
+          <h3 class="text-xl font-semibold text-gray-900 mb-4">¿Qué Incluye?</h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {service.features.map((feature) => (
+              <div class="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg">
+                <svg class="w-5 h-5 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span class="text-gray-700">{feature}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        )}
+
+        <!-- CTA -->
+        <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-xl p-8 text-white text-center">
+          <h3 class="text-2xl font-bold mb-4 text-white">¿Listo para comenzar?</h3>
+          <p class="text-green-100 mb-6">Contáctanos hoy mismo para una cotización personalizada</p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a
+              href="/contacto"
+              class="bg-white text-green-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+            >
+              Solicitar Cotización
+            </a>
+            <a
+              href="tel:+1234567890"
+              class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors"
+            >
+              Llamar Ahora
+            </a>
+          </div>
+        </div>
       </div>
 
-      <!-- Descripción -->
-      {
-        service.fullDescription || service.description ? (
-          <p class="text-gray-700 mb-6 leading-relaxed">
-            {service.fullDescription || service.description}
-          </p>
-        ) : null
-      }
+      <!-- Gallery Tab -->
+      <div x-show="activeTab === 'gallery'" x-transition>
+        <div class="mb-6">
+          <h3 class="text-2xl font-bold text-gray-900 mb-2">Nuestros Trabajos Realizados</h3>
+          <p class="text-gray-600">Explora nuestra galería de proyectos de mantenimiento de áreas verdes</p>
+        </div>
+        
+        <!-- Gallery Masonry -->
+        <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4 mb-8">
+          <template x-for="(image, index) in images" :key="index">
+            <div 
+              class="break-inside-avoid relative group cursor-pointer overflow-hidden rounded-lg bg-gray-100"
+              @click="lightboxOpen = true; lightboxImage = (typeof image === 'string' ? image : image.src); lightboxIndex = index"
+            >
+              <img 
+                :src="typeof image === 'string' ? image : image.src" 
+                :alt="(typeof image === 'object' && image.alt) ? image.alt : `Trabajo ${index + 1} - ${serviceTitle}`"
+                class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.025]"
+                loading="lazy"
+              />
+              <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center">
+                <svg class="w-10 h-10 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6M2 7a7 7 0 1114 0 7 7 0 01-14 0z"></path>
+                </svg>
+              </div>
+            </div>
+          </template>
+        </div>
+        
+        <!-- Empty State -->
+        <div x-show="images.length === 0" class="text-center py-12">
+          <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+          <h3 class="mt-2 text-sm font-medium text-gray-900">No hay imágenes disponibles</h3>
+          <p class="mt-1 text-sm text-gray-500">Pronto agregaremos fotos de nuestros trabajos realizados.</p>
+        </div>
+      </div>
+    </div>
 
-      <!-- Lista de características -->
-      {
-        service.features?.length ? (
-          <div class="mb-6">
-            <h3 class="font-semibold text-lg text-gray-800 mb-3">
-              Nuestro servicio incluye:
-            </h3>
-            <ul class="space-y-2">
-              {service.features.map((feature) => (
-                <li class="flex items-start" key={feature}>
-                  <svg
-                    class="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fill-rule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clip-rule="evenodd"
-                    />
-                  </svg>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null
-      }
-
-      <!-- Por qué elegirnos -->
-      {
-        service.whyChooseUs?.length ? (
-          <div class="mb-6">
-            <h3 class="font-semibold text-lg text-gray-800 mb-3">
-              ¿Por qué elegirnos?
-            </h3>
-            <ul class="space-y-2">
-              {service.whyChooseUs.map((reason: string) => (
-                <li class="flex items-start" key={reason}>
-                  <span class="text-yellow-500 mr-2">🔹</span>
-                  <span>{reason}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null
-      }
-
-      <!-- Información adicional -->
-      {
-        service.additionalInfo && (
-          <div class="mb-6 p-4 bg-blue-50 rounded-lg border-l-4 border-blue-500">
-            <p class="text-blue-700 italic">{service.additionalInfo}</p>
-          </div>
-        )
-      }
-
-      <!-- CTA -->
-      <a
-        href="/contacto"
-        class="mt-4 inline-flex items-center justify-center px-6 py-3 w-full text-base font-semibold rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition-colors"
-      >
-        CONTACTANOS AHORA
-        <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-          <path
-            fill-rule="evenodd"
-            d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z"
-            clip-rule="evenodd"></path>
-        </svg>
-      </a>
+    <!-- Lightbox Modal -->
+    <div 
+      x-show="lightboxOpen" 
+      x-transition.opacity
+      class="fixed inset-0 z-[20000] bg-black/90 flex items-center justify-center p-4"
+      @keydown.escape.window="lightboxOpen = false"
+      @click.self="lightboxOpen = false"
+    >
+      <div class="relative max-w-4xl max-h-full">
+        <!-- Close Button -->
+        <button
+          @click="lightboxOpen = false"
+          class="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors"
+        >
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+        
+        <!-- Navigation Buttons -->
+        <button
+          x-show="images.length > 1"
+          @click="lightboxIndex = lightboxIndex > 0 ? lightboxIndex - 1 : images.length - 1; lightboxImage = (typeof images[lightboxIndex] === 'string' ? images[lightboxIndex] : images[lightboxIndex].src)"
+          class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white hover:text-white transition-colors bg-black/60 hover:bg-black/80 rounded-full p-3 shadow-lg backdrop-blur-sm"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+          </svg>
+        </button>
+        
+        <button
+          x-show="images.length > 1"
+          @click="lightboxIndex = lightboxIndex < images.length - 1 ? lightboxIndex + 1 : 0; lightboxImage = (typeof images[lightboxIndex] === 'string' ? images[lightboxIndex] : images[lightboxIndex].src)"
+          class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white hover:text-white transition-colors bg-black/60 hover:bg-black/80 rounded-full p-3 shadow-lg backdrop-blur-sm"
+        >
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+          </svg>
+        </button>
+        
+        <!-- Image -->
+        <img 
+          :src="lightboxImage" 
+          :alt="(typeof images[lightboxIndex] === 'object' && images[lightboxIndex].alt) ? images[lightboxIndex].alt : `Imagen ${lightboxIndex + 1}`"
+          class="max-w-full max-h-full object-contain rounded-lg"
+        />
+        
+        <!-- Image Counter -->
+        <div x-show="images.length > 1" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+          <span x-text="lightboxIndex + 1"></span> / <span x-text="images.length"></span>
+        </div>
+      </div>
     </div>
   </div>
 </div>

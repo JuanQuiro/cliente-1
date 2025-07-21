@@ -160,6 +160,13 @@ window.heroImages = heroImages;
       position: relative !important;
       overflow: hidden !important;
     }
+
+    /* Hide slider arrows on small screens */
+    @media (max-width: 768px) {
+      .slider-arrow {
+        display: none !important;
+      }
+    }
   </style>
   <!-- Hero Section -->
   <section class="hero" style={`background-image: url('${firstHero}')`}>
