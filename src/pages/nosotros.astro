@@ -1,6 +1,10 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { Image } from 'astro:assets';
 import aboutImage from '../assets/image-hero-index/hero-dos.jpg';
+import heroUnoImg from '../assets/image-hero-index/hero-uno.jpg';
+import heroDosImg from '../assets/image-hero-index/hero-dos.jpg';
+import heroTresImg from '../assets/image-hero-index/hero-tres.jpg';
 
 const pageTitle = 'Sobre Nosotros';
 const pageDescription = 'Conoce nuestra historia, misión, visión y valores. Descubre por qué somos tu mejor opción en servicios de mantenimiento.';
@@ -10,7 +14,7 @@ const teamMembers = [
   {
     name: 'Juan Pérez',
     position: 'Fundador & CEO',
-    image: '/src/assets/image-hero-index/hero-uno.jpg',
+    image: 'heroUnoImg',
     bio: 'Con más de 15 años de experiencia en el sector de mantenimiento, Juan fundó la empresa con la visión de ofrecer servicios de calidad excepcional.',
     social: {
       twitter: '#',
@@ -21,7 +25,7 @@ const teamMembers = [
   {
     name: 'María González',
     position: 'Directora de Operaciones',
-    image: '/src/assets/image-hero-index/hero-dos.jpg',
+    image: heroDosImg,
     bio: 'Especialista en gestión de proyectos con una amplia experiencia en coordinación de equipos y optimización de procesos.',
     social: {
       twitter: '#',
@@ -32,7 +36,7 @@ const teamMembers = [
   {
     name: 'Carlos Rodríguez',
     position: 'Supervisor de Calidad',
-    image: '/src/assets/image-hero-index/hero-tres.jpg',
+    image: heroTresImg,
     bio: 'Encargado de garantizar que cada servicio cumpla con los más altos estándares de calidad y satisfacción del cliente.',
     social: {
       twitter: '#',
@@ -43,7 +47,7 @@ const teamMembers = [
   {
     name: 'Ana Martínez',
     position: 'Jefa de Servicio al Cliente',
-    image: '/src/assets/image-hero-index/hero-uno.jpg',
+    image: 'heroUnoImg',
     bio: 'Apasionada por brindar la mejor experiencia al cliente y asegurar que todas sus necesidades sean atendidas.',
     social: {
       twitter: '#',
@@ -96,7 +100,7 @@ const stats = [
           <blockquote class="mt-6 italic text-green-700 border-l-4 border-green-600 pl-4">"No solo entregamos servicios... creamos entornos seguros, funcionales y estéticos para tu familia o negocio"</blockquote>
         </div>
         <div class="about-intro-image">
-          <img src={aboutImage.src} alt="Nuestro equipo trabajando" loading="lazy" />
+          <Image src={aboutImage} alt="Nuestro equipo trabajando" width={1920} height={1080} class="rounded-full" />
         </div>
       </div>
     </div>
@@ -200,7 +204,7 @@ const stats = [
 <style>
   /* Page Header */
   .page-header {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/src/assets/image-hero-index/hero-dos.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('heroDosImg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -598,7 +602,7 @@ const stats = [
   /* CTA Section */
   .about-cta {
     padding: 6rem 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/src/assets/image-hero-index/hero-tres.jpg');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('heroTresImg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
