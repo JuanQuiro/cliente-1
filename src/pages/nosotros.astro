@@ -1,7 +1,7 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import { Image } from 'astro:assets';
-import aboutImage from '../assets/image-hero-index/hero-dos.jpg';
+import aboutImage from '../assets/nosotros/nosotros.jpg';
 import heroUnoImg from '../assets/image-hero-index/hero-uno.jpg';
 import heroDosImg from '../assets/image-hero-index/hero-dos.jpg';
 import heroTresImg from '../assets/image-hero-index/hero-tres.jpg';
@@ -14,7 +14,7 @@ const teamMembers = [
   {
     name: 'Juan Pérez',
     position: 'Fundador & CEO',
-    image: 'heroUnoImg',
+    image: heroUnoImg,
     bio: 'Con más de 15 años de experiencia en el sector de mantenimiento, Juan fundó la empresa con la visión de ofrecer servicios de calidad excepcional.',
     social: {
       twitter: '#',
@@ -47,7 +47,7 @@ const teamMembers = [
   {
     name: 'Ana Martínez',
     position: 'Jefa de Servicio al Cliente',
-    image: 'heroUnoImg',
+    image: heroUnoImg,
     bio: 'Apasionada por brindar la mejor experiencia al cliente y asegurar que todas sus necesidades sean atendidas.',
     social: {
       twitter: '#',
@@ -68,7 +68,7 @@ const stats = [
 
 <MainLayout title={pageTitle} description={pageDescription}>
   <!-- Page Header -->
-  <section class="page-header">
+  <section class="page-header" style={`background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${heroDosImg.src});`}>
     <div class="container">
       <h1>Sobre Nosotros</h1>
       <nav class="breadcrumb">
@@ -100,7 +100,7 @@ const stats = [
           <blockquote class="mt-6 italic text-green-700 border-l-4 border-green-600 pl-4">"No solo entregamos servicios... creamos entornos seguros, funcionales y estéticos para tu familia o negocio"</blockquote>
         </div>
         <div class="about-intro-image">
-          <Image src={aboutImage} alt="Nuestro equipo trabajando" width={1920} height={1080} class="rounded-full" />
+          <Image src={aboutImage} alt="Nuestro equipo trabajando" width={1920} height={1080} class="w-full h-auto" />
         </div>
       </div>
     </div>
@@ -187,7 +187,7 @@ const stats = [
   </section>
 
   <!-- CTA Section -->
-  <section class="about-cta">
+  <section class="about-cta" style={`background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${heroTresImg.src});`}>
     <div class="container">
       <div class="cta-content">
         <h2>¿Listo para experimentar la diferencia de trabajar con nosotros?</h2>
@@ -204,7 +204,7 @@ const stats = [
 <style>
   /* Page Header */
   .page-header {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('heroDosImg');
+    
     background-size: cover;
     background-position: center;
     color: white;
@@ -472,7 +472,7 @@ const stats = [
   
   .team-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmin(250px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 2.5rem;
   }
   
@@ -602,7 +602,7 @@ const stats = [
   /* CTA Section */
   .about-cta {
     padding: 6rem 0;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('heroTresImg');
+    
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
