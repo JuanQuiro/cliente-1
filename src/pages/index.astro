@@ -90,16 +90,16 @@ window.heroImages = heroImages;
     
     .slider-dots {
       position: absolute !important;
-      bottom: 30px !important;
+      bottom: 20px !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
       display: flex !important;
-      gap: 15px !important;
-      padding: 15px 25px !important;
-      background: rgba(0, 0, 0, 0.3) !important;
-      backdrop-filter: blur(10px) !important;
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
-      border-radius: 50px !important;
+      gap: 4px !important;
+      padding: 0 !important;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      border: none !important;
+      border-radius: 6px !important;
       z-index: 20 !important;
     }
     
@@ -109,7 +109,7 @@ window.heroImages = heroImages;
       left: 0 !important;
       right: 0 !important;
       height: 6px !important;
-      background: rgba(0, 0, 0, 0.3) !important;
+      background: transparent !important;
       z-index: 9999 !important;
       pointer-events: none !important;
       display: block !important;
@@ -145,7 +145,7 @@ window.heroImages = heroImages;
       width: 60px !important;
       height: 60px !important;
       border-radius: 50% !important;
-      border: 2px solid rgba(255, 255, 255, 0.3) !important;
+      border: none !important;
       background: rgba(0, 0, 0, 0.2) !important;
       backdrop-filter: blur(15px) !important;
       color: white !important;
@@ -170,10 +170,12 @@ window.heroImages = heroImages;
   </style>
   <!-- Hero Section -->
   <section class="hero" style={`background-image: url('${firstHero}')`}>
+    <!-- Dark gradient overlay for better text readability -->
+    <div class="hero-overlay"></div>
     <div class="container">
       <div class="hero-content">
-        <h1 class="!text-black"><span class="highlight !text-black">Servicios</span> de Mantenimiento Residencial y Comercial</h1>
-        <p class="tagline !text-black !font-semibold">Instaladores expertos en techado y paisajismo a su servicio. Obtenga más información sobre nuestros servicios y comience hoy mismo.</p>
+        <h1 class="hero-title"><span class="text-green">Servicios de Mantenimiento</span> <span class="text-yellow">Residencial y Comercial</span></h1>
+        <p class="tagline !text-white !font-semibold">Instaladores expertos en techado y paisajismo a su servicio. Obtenga más información sobre nuestros servicios y comience hoy mismo.</p>
         
         <div class="hero-buttons">
           <a href="/servicios" class="btn btn-primary hover:text-black">Nuestros Servicios</a>
@@ -367,9 +369,9 @@ window.heroImages = heroImages;
     .featured-services, .contact-section { display: block; }
 
     /* Hero */
-    .hero .btn-primary { background:var(--accent); border-color:var(--accent); }
+    .hero .btn-primary { background:var(--accent); border-color:var(--accent); padding: 0.5rem 1.25rem; font-size: 0.9rem; }
     .hero .btn-primary:hover { background:#c77705; }
-    .hero .btn-outline { border-color:#fff; color:#fff; }
+    .hero .btn-outline { border-color:#fff; color:#fff; padding: 0.5rem 1.25rem; font-size: 0.9rem; }
     .hero .btn-outline:hover { background:rgba(255,255,255,0.15); }
     .hero {
       min-height: 100vh;
@@ -386,9 +388,56 @@ window.heroImages = heroImages;
       transform: translateZ(0);
     }
     
+    /* Dark gradient overlay for better text readability and aesthetics */
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.5) 30%,
+        rgba(0, 0, 0, 0.3) 60%,
+        rgba(0, 0, 0, 0.6) 100%
+      );
+      z-index: 1;
+    }
+    
     .hero .container {
       position: relative;
-      z-index: 2;
+      z-index: 3;
+    }
+    
+    /* Hero title styling with green and yellow colors */
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .text-green {
+      color: #22c55e;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .text-yellow {
+      color: #fbbf24;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    /* Enhanced tagline styling */
+    .tagline {
+      font-size: 1.25rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
     }
     
     /* Premium Navigation Dots - Ultra Smooth */
@@ -398,21 +447,21 @@ window.heroImages = heroImages;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
-      gap: 15px;
-      padding: 15px 25px;
-      background: rgba(0, 0, 0, 0.3);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: 50px;
+      gap: 4px;
+      padding: 0;
+      background: transparent;
+      backdrop-filter: none;
+      border: none;
+      border-radius: 6px;
       z-index: 10;
     }
     
     .slider-dots button {
-      width: 14px;
-      height: 14px;
+      width: 8px;
+      height: 8px;
       border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.7);
-      background: rgba(255, 255, 255, 0.3);
+      border: none;
+      background: rgba(255, 255, 255, 0.6);
       cursor: pointer;
       transition: all 0.3s ease;
       outline: none;
@@ -421,15 +470,15 @@ window.heroImages = heroImages;
     }
     
     .slider-dots button:hover {
-      transform: scale(1.2);
-      border-color: rgba(255, 255, 255, 0.9);
-      background: rgba(255, 255, 255, 0.5);
+      transform: scale(1.08);
+      border: none;
+      background: rgba(255, 255, 255, 0.8);
       box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     }
     
     .slider-dots button.active {
-      transform: scale(1.4);
-      border-color: rgba(255, 255, 255, 1);
+      transform: scale(1.1);
+      border: none;
       background: rgba(255, 255, 255, 0.8);
       box-shadow: 
         0 0 15px rgba(255, 255, 255, 0.5),
@@ -473,14 +522,14 @@ window.heroImages = heroImages;
     }
     
     .slider-arrow {
-      width: 60px;
-      height: 60px;
+      width: 20px;
+      height: 20px;
       border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.3);
-      background: rgba(0, 0, 0, 0.2);
-      backdrop-filter: blur(15px);
+      border: none;
+      background: rgba(0, 0, 0, 0.25);
+      backdrop-filter: none;
       color: white;
-      font-size: 18px;
+      font-size: 8px;
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       display: flex;
@@ -508,8 +557,8 @@ window.heroImages = heroImages;
     .slider-arrow:hover {
       border-color: rgba(255, 255, 255, 0.8);
       background: rgba(255, 255, 255, 0.15);
-      transform: scale(1.1);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      transform: scale(1.04);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
     }
     
     .slider-arrow:hover::before {
@@ -559,9 +608,9 @@ window.heroImages = heroImages;
       }
       
       .slider-arrow {
-        width: 45px;
-        height: 45px;
-        font-size: 14px;
+        width: 20px;
+        height: 20px;
+        font-size: 8px;
         border-width: 1.5px;
       }
       
@@ -574,8 +623,8 @@ window.heroImages = heroImages;
       }
       
       .slider-dots button {
-        width: 10px;
-        height: 10px;
+        width: 8px;
+        height: 8px;
         border-width: 1.5px;
       }
       
@@ -924,9 +973,9 @@ window.heroImages = heroImages;
       margin-bottom: 1.5rem;
       padding: 1rem;
       background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
+      backdrop-filter: none;
       border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: none;
       transition: all 0.3s ease;
     }
     
@@ -956,7 +1005,7 @@ window.heroImages = heroImages;
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
       height: 400px;
       background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      border: none;
     }
     
     .map-container::before {
@@ -1014,7 +1063,7 @@ window.heroImages = heroImages;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
       border-radius: 12px !important;
       overflow: hidden;
-      backdrop-filter: blur(10px);
+      backdrop-filter: none;
       background: rgba(255, 255, 255, 0.9) !important;
     }
     
@@ -1033,14 +1082,14 @@ window.heroImages = heroImages;
     .leaflet-control-zoom a:hover {
       background: rgba(16, 185, 129, 0.1) !important;
       color: #059669 !important;
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
     
     .leaflet-control-attribution {
       background: rgba(255, 255, 255, 0.8) !important;
-      backdrop-filter: blur(10px) !important;
+      backdrop-filter: none !important;
       border-radius: 8px !important;
-      border: 1px solid rgba(255, 255, 255, 0.2) !important;
+      border: none !important;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
       padding: 4px 8px !important;
       font-size: 10px !important;
@@ -1226,7 +1275,7 @@ window.heroImages = heroImages;
               <p style="
                 margin: 0;
                 color: #64748b;
-                font-size: 14px;
+                font-size: 8px;
               ">Barranquitas, Puerto Rico</p>
             </div>
           `, {
@@ -1373,11 +1422,9 @@ class HeroSlider {
       
       // Force visible styles directly on the element
       dot.style.cssText = `
-        width: 16px !important;
-        height: 16px !important;
+        width: 8px !important;
+        height: 8px !important;
         border-radius: 50% !important;
-        border: 2px solid rgba(255, 255, 255, 0.8) !important;
-        background: rgba(255, 255, 255, 0.4) !important;
         cursor: pointer !important;
         transition: all 0.3s ease !important;
         outline: none !important;
@@ -1400,16 +1447,15 @@ class HeroSlider {
     // Force container styles
     this.sliderDots.style.cssText = `
       position: absolute !important;
-      bottom: 30px !important;
+      bottom: 20px !important;
       left: 50% !important;
       transform: translateX(-50%) !important;
       display: flex !important;
-      gap: 15px !important;
-      padding: 15px 25px !important;
-      background: rgba(0, 0, 0, 0.5) !important;
-      backdrop-filter: blur(10px) !important;
-      border: 1px solid rgba(255, 255, 255, 0.3) !important;
-      border-radius: 50px !important;
+      gap: 4px !important;
+      padding: 0 !important;
+      background: transparent !important;
+      backdrop-filter: none !important;
+      border-radius: 6px !important;
       z-index: 1000 !important;
       opacity: 1 !important;
       visibility: visible !important;
@@ -1612,20 +1658,19 @@ class HeroSlider {
         button.classList.add('active');
         // Force active styles
         button.style.cssText += `
-          transform: scale(1.4) !important;
-          border-color: rgba(255, 255, 255, 1) !important;
+          transform: scale(1.05) !important;
           background: rgba(255, 255, 255, 0.8) !important;
-          box-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
+          box-shadow: 0 0 4px rgba(255, 255, 255, 0.35) !important;
         `;
         console.log(`⭐ Dot ${index + 1} set as active`);
       } else {
         button.classList.remove('active');
         // Reset to normal styles
         button.style.cssText = `
-          width: 16px !important;
-          height: 16px !important;
+          width: 8px !important;
+          height: 8px !important;
           border-radius: 50% !important;
-          border: 2px solid rgba(255, 255, 255, 0.8) !important;
+          border: none !important;
           background: rgba(255, 255, 255, 0.4) !important;
           cursor: pointer !important;
           transition: all 0.3s ease !important;
