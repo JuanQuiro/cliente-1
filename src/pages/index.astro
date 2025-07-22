@@ -7,6 +7,9 @@ import { Image, getImage } from 'astro:assets';
 import heroUno from '../assets/image-hero-index/hero-uno.jpg';
 import heroDos from '../assets/image-hero-index/hero-dos.jpg';
 import heroTres from '../assets/image-hero-index/hero-tres.jpg';
+import corteImg from '../assets/image-hero-index/servicio-matas.jpeg';
+import techoImg from '../assets/image-hero-index/servicio-techo.jpg';
+import pinturaImg from '../assets/image-hero-index/servicio-pinturo.jpeg';
 
 // Generar imágenes optimizadas para el slider con máxima calidad
 const heroImageOptimized1 = await getImage({src: heroUno, format: 'webp', quality: 90, width: 1920, height: 1080});
@@ -58,7 +61,8 @@ window.heroImages = heroImages;
   <style slot="head">
     /* Immediate hero background - shows instantly */
     .hero {
-      min-height: 100vh;
+      height: 960px;
+      max-height: 100vh;
       position: relative;
       /* Fallback gradient background for instant display */
       background: linear-gradient(135deg, rgba(26, 77, 58, 0) 0%, rgba(45, 90, 61, 0) 50%, rgba(26, 77, 58, 0) 100%);
@@ -252,8 +256,8 @@ window.heroImages = heroImages;
       
       <div class="services-grid ">
         <div class="service-card">
-          <div class="mx-auto service-icon">
-            <i class="fas fa-leaf"></i>
+          <div class="service-thumb">
+            <img src={corteImg.src} alt="Corte de Grama" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" />
           </div>
           <div class="service-content">
             <h3>Corte de Grama</h3>
@@ -262,8 +266,8 @@ window.heroImages = heroImages;
         </div>
         
         <div class="service-card">
-          <div class="mx-auto service-icon">
-            <i class="fas fa-home"></i>
+          <div class="service-thumb">
+            <img src={techoImg.src} alt="Limpieza de Techos" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" />
           </div>
           <div class="service-content">
             <h3>Limpieza de Techos</h3>
@@ -272,17 +276,29 @@ window.heroImages = heroImages;
         </div>
         
         <div class="service-card">
-          <div class="mx-auto service-icon">
-            <i class="fas fa-paint-roller"></i>
+          <div class="service-thumb">
+            <img src={pinturaImg.src} alt="Pintura Profesional" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" />
           </div>
           <div class="service-content">
             <h3>Pintura Profesional</h3>
             <p>Transforma tus espacios con nuestro servicio de pintura de la más alta calidad.</p>
           </div>
         </div>
+
+        
+
+
+
+
+
       </div>
+      <div class="text-center mt-8">
+    <a href="/servicios" class="btn btn-primary">Ver más servicios</a>
+  </div>
     </div>
   </section>
+
+  
 
   <!-- CTA Banner -->
   <section class="cta-banner"><div class="container">
@@ -374,7 +390,8 @@ window.heroImages = heroImages;
     .hero .btn-outline { border-color:#fff; color:#fff; padding: 0.5rem 1.25rem; font-size: 0.9rem; }
     .hero .btn-outline:hover { background:rgba(255,255,255,0.15); }
     .hero {
-      min-height: 100vh;
+      height: 960px;
+      max-height: 100vh;
       position: relative;
       display: flex;
       align-items: center;
@@ -789,7 +806,11 @@ window.heroImages = heroImages;
     .services-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 2rem; margin-top: 3rem; }
     .service-card { background:#fff; border-radius: 0.75rem; box-shadow: 0 4px 20px rgba(0,0,0,.05); padding:2rem; transition: transform .3s, box-shadow .3s; }
     .service-card:hover { transform: translateY(-6px); box-shadow: 0 8px 24px rgba(0,0,0,.08); }
-    .service-icon { font-size:2rem; color:#28a745; margin-bottom: 1rem; }
+    
+
+    .service-thumb { width:100%; height:180px; overflow:hidden; border-radius:0.75rem; margin-bottom:1rem; }
+    .service-thumb img { width:100%; height:100%; object-fit:cover; transition:transform .4s ease; }
+    .service-card:hover .service-thumb img { transform:scale(1.05); }
 
     /* CTA Banner */
     .cta-banner { background:linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); color:#fff; padding:4rem 1rem; text-align:center; }

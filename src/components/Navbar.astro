@@ -1,5 +1,5 @@
 ---
-import logoNavbar from '../assets/logo-navbar.jpeg';
+import logoNavbar from '../assets/logo-navbar.png';
 ---
 <header class="navbar">
   <div class="container">
@@ -37,6 +37,7 @@ import logoNavbar from '../assets/logo-navbar.jpeg';
     top: 0;
     width: 100%;
     z-index: 1000;
+    overflow: visible; /* allow logo to overflow */
   }
   .navbar .container {
     max-width: 1200px;
@@ -50,12 +51,33 @@ import logoNavbar from '../assets/logo-navbar.jpeg';
     display: flex;
     align-items: center;
     text-decoration: none;
+    position: relative;
+    height: 70px; /* navbar height reference */
+    width: 140px; /* reserve more space for larger logo */
   }
   .logo-image {
-    height: 70px; /* tamaño ajustado */
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: none;
     width: auto;
+    height: 160px; /* protrudes more */
     object-fit: contain;
-    max-width: 260px;
+    z-index: 1010;
+    pointer-events: none;
+  }
+  @media (max-width: 768px) {
+    .logo { height: 60px; width: 120px; }
+    .logo-image { height: 100px; }
+  }
+  @media (min-width: 1280px) {
+    .logo-image { height: 140px; }
+  }
+  @media (max-width: 768px) {
+    .logo-image { max-height: 60px; }
+  }
+  @media (min-width: 1280px) {
+    .logo-image { max-height: 80px; }
   }
 
   /* Nav Links */
