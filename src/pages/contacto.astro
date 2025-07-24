@@ -376,7 +376,27 @@ const formFields = [
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(Object.fromEntries(fd))
           });
-          const data = await res.json();
+
+          let data;
+          const isJson = res.headers.get('content-type')?.includes('application/json');
+          if (isJson) {
+            try {
+              data = await res.json();
+            } catch (_) {
+              throw new Error('Respuesta no válida del servidor.');
+            }
+          }
+
+          if (!res.ok) {
+            // Si la respuesta no es ok, usar data.message (si existe) o mensaje genérico
+            const errorMsg = data?.message || `Error ${res.status}: No fue posible enviar tu mensaje.`;
+            throw new Error(errorMsg);
+          }
+
+          // Si no retornó JSON, pero sí status OK
+          if (!data) {
+            data = { success: true, message: 'Mensaje enviado correctamente.' };
+          }
 
           if (data.success) {
             formMessage.textContent = data.message;

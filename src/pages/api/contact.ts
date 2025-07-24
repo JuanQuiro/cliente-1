@@ -62,7 +62,7 @@ Fecha: ${new Date().toLocaleString('es-PR', { timeZone: 'America/Puerto_Rico' })
       const resend = new Resend(apiKey);
 
       const sendResult = await resend.emails.send({
-        from: 'Jonathan Roofing <noreply@resend.dev>',
+        from: 'Jonathan Roofing <onboarding@resend.dev>',
         to: ['jonathanroofingandlandscaping@gmail.com'],
         subject: `Nuevo mensaje: ${subject}`,
         text: emailContent
