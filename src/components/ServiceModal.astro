@@ -41,21 +41,41 @@ const { service } = Astro.props;
     </div>
 
     <!-- Navigation Tabs -->
-    <div class="border-b border-gray-200">
-      <nav class="flex px-6" aria-label="Tabs">
+    <div class="bg-gradient-to-r from-purple-50 to-blue-50 px-6 py-6 border-b border-gray-200">
+      <nav class="grid grid-cols-2 gap-4" aria-label="Tabs">
         <button
           @click="activeTab = 'info'"
-          :class="activeTab === 'info' ? 'border-green-500 text-green-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
-          class="py-4 px-1 border-b-2 font-medium text-sm mr-8 transition-colors"
+          :class="activeTab === 'info' ? 'bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg scale-105 border-green-400' : 'bg-white text-gray-700 hover:text-green-600 hover:shadow-md hover:scale-102 border-gray-200'"
+          class="w-full flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 border-2 transform"
         >
-          Información
+          <div class="flex items-center space-x-3">
+            <div :class="activeTab === 'info' ? 'bg-white/20' : 'bg-green-100'" class="p-2 rounded-lg">
+              <svg :class="activeTab === 'info' ? 'text-white' : 'text-green-600'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+              </svg>
+            </div>
+            <div class="text-left">
+              <div class="font-bold">DATOS PERSONALES</div>
+              <div :class="activeTab === 'info' ? 'text-white/80' : 'text-gray-500'" class="text-xs">Información del servicio</div>
+            </div>
+          </div>
         </button>
         <button
           @click="activeTab = 'gallery'"
-          :class="activeTab === 'gallery' ? 'border-green-500 text-green-600' : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300'"
-          class="py-4 px-1 border-b-2 font-medium text-sm transition-colors"
+          :class="activeTab === 'gallery' ? 'bg-gradient-to-r from-green-500 to-green-600 text-white shadow-lg scale-105 border-green-400' : 'bg-white text-gray-700 hover:text-green-600 hover:shadow-md hover:scale-102 border-gray-200'"
+          class="w-full flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 border-2 transform"
         >
-          Galería de Trabajos (<span x-text="images.length"></span>)
+          <div class="flex items-center space-x-3">
+            <div :class="activeTab === 'gallery' ? 'bg-white/20' : 'bg-green-100'" class="p-2 rounded-lg">
+              <svg :class="activeTab === 'gallery' ? 'text-white' : 'text-green-600'" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            <div class="text-left">
+              <div class="font-bold">DATOS DE LA TIENDA</div>
+              <div :class="activeTab === 'gallery' ? 'text-white/80' : 'text-gray-500'" class="text-xs">Galería (<span x-text="images.length"></span> fotos)</div>
+            </div>
+          </div>
         </button>
       </nav>
     </div>

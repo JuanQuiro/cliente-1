@@ -19,8 +19,8 @@ const heroImageOptimized3 = await getImage({src: heroTres, format: 'webp', quali
 const heroImages = [heroImageOptimized1.src, heroImageOptimized2.src, heroImageOptimized3.src];
 const firstHero = heroImages[0];
 
-const pageTitle = 'Inicio';
-const pageDescription = 'Servicios profesionales de mantenimiento para tu hogar o negocio.';
+const pageTitle = 'Jonathan Roofing & Landscaping | Mantenimiento Integral en Puerto Rico';
+const pageDescription = 'Expertos en mantenimiento de áreas verdes, limpieza e impermeabilización de techos y soluciones handyman. ¡Transformamos tu espacio con 10 años de experiencia local!';
 ---
 
 <!-- Critical: Immediate hero display script -->
@@ -51,6 +51,7 @@ window.heroImages = heroImages;
 </script>
 
 <MainLayout title={pageTitle} description={pageDescription}>
+  <BaseHead title={pageTitle} description={pageDescription} image={heroUno} slot="head" />
   <!-- Critical Performance Optimizations -->
   <link rel="preload" as="image" href={firstHero} slot="head" fetchpriority="high" />
   <link rel="prefetch" as="image" href={heroImages[1]} slot="head" />
@@ -173,7 +174,7 @@ window.heroImages = heroImages;
     }
   </style>
   <!-- Hero Section -->
-  <section class="hero" style={`background-image: url('${firstHero}')`}>
+  <section aria-label="Hero: Mantenimiento Integral" class="hero" style={`background-image: url('${firstHero}')`}>
     <!-- Dark gradient overlay for better text readability -->
     <div class="hero-overlay"></div>
     <div class="container">
@@ -205,41 +206,65 @@ window.heroImages = heroImages;
   </section>
 
   <!-- About Section -->
-  <section class="about-section">
+  <section id="about" aria-labelledby="about-section-heading" class="about-section">
+    <h2 id="about-section-heading" class="sr-only">Sobre Nosotros</h2>
     <div class="container about-grid">
       <!-- Card Sobre Nosotros -->
       <div class="about-card">
         <h3><span class="highlight">SOBRE NOSOTROS</span></h3>
-        <p>En <strong>Jonathan Roofing and Landscaping</strong>, nos especializamos en transformar y mantener espacios exteriores con soluciones integrales para hogares y negocios en Puerto Rico.</p>
-        <p>Nuestro enfoque combina calidad, experiencia local y atención personalizada.</p>
-        <ul class="about-list">
-          <li>Servicios completos desde el diseño hasta el mantenimiento continuo</li>
-          <li>Técnicas probadas con herramientas profesionales (STIHL, ILLEGNO, OBERNARD)</li>
-          <li>Compromiso con Puerto Rico, mejorando entornos residenciales y comerciales</li>
-        </ul>
+        <p><em>En Jonathan Roofing & Landscaping, no solo mejoramos espacios exteriores, ¡los reinventamos!</em></p>
+        <p>Somos su aliado confiable en Puerto Rico para transformar techos, jardines y hogares con soluciones integrales que unen durabilidad y belleza.</p>
+        
+        <div class="mt-6 space-y-4">
+          <!-- Bloque áreas verdes -->
+          <div class="service-block">
+            <h4 class="text-lg font-semibold flex items-center gap-2"><i class="fas fa-seedling text-green-600"></i>Mantenimiento de Áreas Verdes de Precisión</h4>
+            <ul class="list-disc list-inside ml-5 text-sm">
+              <li>Equipos STIHL, ECHO, BERNARD</li>
+            </ul>
+          </div>
+          <!-- Bloque sellado de techos -->
+          <div class="service-block">
+            <h4 class="text-lg font-semibold flex items-center gap-2"><i class="fas fa-water text-blue-600"></i>Sellado de Techos</h4>
+            <ul class="list-disc list-inside ml-5 text-sm">
+              <li>Materiales premium: Eterna Undersystem y Marin Membrana</li>
+            </ul>
+          </div>
+          <!-- Bloque servicios extra -->
+          <div class="service-block">
+            <h4 class="text-lg font-semibold flex items-center gap-2"><i class="fas fa-tools text-yellow-600"></i>Servicios que Van Más Allá</h4>
+            <ul class="list-disc list-inside ml-5 text-sm space-y-1">
+              <li>Pintura que revitaliza fachadas</li>
+              <li>Mudanzas sin estrés</li>
+              <li>Soluciones handyman con acabados perfectos, entre otros</li>
+            </ul>
+          </div>
+        </div>
       </div>
 
       <!-- Beneficios directos -->
       <div class="benefit-card">
-          <i class="fas fa-map-marker-alt icon"></i>
-          <h4>Experiencia Local</h4>
-          <p>Años sirviendo a comunidades puertorriqueñas y conocimiento profundo de sus necesidades climáticas y estructurales.</p>
-        </div>
-        <div class="benefit-card">
-          <i class="fas fa-check-circle icon"></i>
-          <h4>Calidad Garantizada</h4>
-          <p>Equipos industriales y materiales premium; sellado de techos con garantía incluida.</p>
-        </div>
-        <div class="benefit-card">
-          <i class="fas fa-tools icon"></i>
-          <h4>Soluciones Prácticas</h4>
-          <p>Resolución eficiente de problemas (empozamientos, grietas, jardines descuidados) y mantenimiento preventivo para ahorrar costos.</p>
-        </div>
-        <div class="benefit-card">
-          <i class="fas fa-headset icon"></i>
-          <h4>Atención al Cliente</h4>
-          <p>Servicio cercano y dedicado, adaptado a las necesidades de cada proyecto.</p>
-        </div>
+        <i class="fas fa-map-marker-alt icon"></i>
+        <h4>Experiencia Local</h4>
+        <p>10 años sirviendo a comunidades puertorriqueñas y conocimiento profundo de sus necesidades climáticas y estructurales.</p>
+      </div>
+      <div class="benefit-card">
+        <i class="fas fa-check-circle icon"></i>
+        <h4>Calidad Garantizada</h4>
+        <p>Equipos industriales y materiales premium; sellado de techos con garantía incluida.</p>
+      </div>
+      <div class="benefit-card">
+        <i class="fas fa-tools icon"></i>
+        <h4>Soluciones Prácticas</h4>
+        <p>Resolución eficiente de problemas (empozamientos, grietas, jardines descuidados) y mantenimiento preventivo para ahorrar costos.</p>
+      </div>
+      <div class="benefit-card">
+        <i class="fas fa-headset icon"></i>
+        <h4>Atención al Cliente</h4>
+        <p>Servicio cercano y dedicado, adaptado a las necesidades de cada proyecto.</p>
+      </div>
+      
+
       </div>
     </div>
   </section>
@@ -255,7 +280,7 @@ window.heroImages = heroImages;
       </div>
       
       <div class="services-grid ">
-        <div class="service-card">
+        <a href="/servicios#areas-verdes" class="service-card">
           <div class="service-thumb">
             <img src={corteImg.src} alt="Corte de Grama" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" />
           </div>
@@ -263,9 +288,9 @@ window.heroImages = heroImages;
             <h3>Corte de Grama</h3>
             <p>Mantenimiento profesional de jardines y áreas verdes para mantener tu espacio exterior impecable.</p>
           </div>
-        </div>
+        </a>
         
-        <div class="service-card">
+        <a href="/servicios#lavado-techos" class="service-card">
           <div class="service-thumb">
             <img src={techoImg.src} alt="Limpieza de Techos" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" />
           </div>
@@ -273,9 +298,9 @@ window.heroImages = heroImages;
             <h3>Limpieza de Techos</h3>
             <p>Eliminación de musgo, hojas y suciedad para prolongar la vida útil de tu techo.</p>
           </div>
-        </div>
+        </a>
         
-        <div class="service-card">
+        <a href="/servicios#pintura" class="service-card">
           <div class="service-thumb">
             <img src={pinturaImg.src} alt="Pintura Profesional" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" />
           </div>
@@ -283,7 +308,7 @@ window.heroImages = heroImages;
             <h3>Pintura Profesional</h3>
             <p>Transforma tus espacios con nuestro servicio de pintura de la más alta calidad.</p>
           </div>
-        </div>
+        </a>
 
         
 

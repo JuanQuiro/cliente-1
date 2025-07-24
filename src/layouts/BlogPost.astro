@@ -57,10 +57,10 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 
 	<body>
 		<Navbar />
-		<main>
-			<article>
+		<main role="main">
+			<article aria-labelledby="post-title">
 				<div class="hero-image">
-					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" />}
+					{heroImage && <Image width={1020} height={510} src={heroImage} alt="" aria-hidden="true" />}
 				</div>
 				<div class="prose">
 					<div class="title">
@@ -74,7 +74,7 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 								)
 							}
 						</div>
-						<h1>{title}</h1>
+						<h1 id="post-title">{title}</h1>
 						<hr />
 					</div>
 					<slot />

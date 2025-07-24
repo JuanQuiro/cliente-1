@@ -1,13 +1,14 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import BaseHead from '../components/BaseHead.astro';
 import { Image } from 'astro:assets';
 import aboutImage from '../assets/nosotros/nosotros.jpg';
 import heroUnoImg from '../assets/image-hero-index/hero-uno.jpg';
 import heroDosImg from '../assets/image-hero-index/hero-dos.jpg';
 import heroTresImg from '../assets/image-hero-index/hero-tres.jpg';
 
-const pageTitle = 'Sobre Nosotros';
-const pageDescription = 'Conoce nuestra historia, misión, visión y valores. Descubre por qué somos tu mejor opción en servicios de mantenimiento.';
+const pageTitle = 'Sobre Nosotros | Jonathan Roofing & Landscaping';
+const pageDescription = 'Descubre la trayectoria de 10 años de Jonathan Roofing & Landscaping, nuestra misión de brindar soluciones confiables y nuestro compromiso con la calidad en Puerto Rico.'
 
 // Team members data
 const teamMembers = [
@@ -15,7 +16,7 @@ const teamMembers = [
     name: 'Juan Pérez',
     position: 'Fundador & CEO',
     image: heroUnoImg,
-    bio: 'Con más de 15 años de experiencia en el sector de mantenimiento, Juan fundó la empresa con la visión de ofrecer servicios de calidad excepcional.',
+    bio: 'Con más de 10 años de experiencia en el sector de mantenimiento, Juan fundó la empresa con la visión de ofrecer servicios de calidad excepcional.',
     social: {
       twitter: '#',
       linkedin: '#',
@@ -59,7 +60,7 @@ const teamMembers = [
 
 // Company stats
 const stats = [
-  { number: '10+', label: 'Años de Experiencia' },
+  { number: '10', label: 'Años de Experiencia' },
   { number: '500+', label: 'Clientes Satisfechos' },
   { number: '50+', label: 'Proyectos Completados' },
   { number: '24/7', label: 'Soporte al Cliente' }
@@ -67,10 +68,11 @@ const stats = [
 ---
 
 <MainLayout title={pageTitle} description={pageDescription}>
+  <BaseHead title={pageTitle} description={pageDescription} image={aboutImage} slot="head" />
   <!-- Page Header -->
-  <section class="page-header" style={`background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${heroDosImg.src});`}>
+  <section class="page-header" role="region" aria-labelledby="page-header-title" style={`background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${heroDosImg.src});`}>
     <div class="container">
-      <h1>Sobre Nosotros</h1>
+      <h1 id="page-header-title">Sobre Nosotros</h1>
       <nav class="breadcrumb">
         <a href="/">Inicio</a>
         <span>/</span>
@@ -80,16 +82,18 @@ const stats = [
   </section>
 
   <!-- About Intro -->
-  <section class="about-intro">
+  <section class="about-intro" role="region" aria-labelledby="intro-title">
     <div class="container">
       <div class="about-intro-content">
         <div class="about-intro-text">
-          <h2>Jonathan Roofing & Landscaping</h2>
+          <h2 id="intro-title">Jonathan Roofing & Landscaping</h2>
           <p>Nos especializamos en soluciones integrales para hogares y negocios en Puerto Rico, combinando expertise en techos, paisajismo y mantenimiento general.</p>
           <ul class="space-y-1 list-none mt-4">
+            <li>✔ Mantenimiento de áreas verdes usando equipos profesionales (STIHL, ECHO, BERNARD)</li>
             <li>✔ Sellado de techos con materiales premium (Eterna, Marin Membrana)</li>
-            <li>✔ Mantenimiento de áreas verdes usando equipos profesionales (STIHL, ILLEGNO)</li>
-            <li>✔ Servicios de <em>handyman</em> y remodelaciones menores</li>
+            <li>✔ Reparación de Techos y sistema de agua</li>
+            <li>✔ Servicios de handyman y remodelaciones menores</li>
+            <li>✔ Mudanzas locales seguras y organizadas</li>
           </ul>
           <p class="mt-6">Nuestra experiencia nos ha permitido convertirnos en la elección confiable de cientos de clientes que buscan:</p>
           <ul class="list-disc list-inside space-y-1">
@@ -107,7 +111,8 @@ const stats = [
   </section>
 
   <!-- Mission & Vision -->
-  <section class="mission-vision">
+  <section class="mission-vision" role="region" aria-labelledby="mission-vision-title">
+    <h2 id="mission-vision-title" class="sr-only">Misión y Visión</h2>
     <div class="container">
       <div class="mission-vision-grid">
         <div class="mission-box">
@@ -115,7 +120,7 @@ const stats = [
             <i class="fas fa-bullseye"></i>
           </div>
           <h3>MISIÓN</h3>
-          <p>En Jonathan Roofing & Landscaping, nos comprometemos a brindar soluciones integrales de mantenimiento y construcción con estándares profesionales, utilizando equipos industriales (STIHL, BERNARD) y materiales premium (Eterna, Marin Membrana).</p>
+          <p>En Jonathan Roofing & Landscaping, nos comprometemos a brindar soluciones integrales de mantenimiento y construcción con estándares profesionales, utilizando equipos industriales (STIHL, ECHO, BERNARD) y materiales premium (Eterna, Marin Membrana).</p>
         </div>
         
         <div class="vision-box">
@@ -136,7 +141,8 @@ const stats = [
   </section>
 
   <!-- Values -->
-  <section class="values-section">
+  <section class="values-section" role="region" aria-labelledby="values-section-title">
+    <h2 id="values-section-title" class="sr-only">Valores</h2>
     <div class="container">
       <div class="section-header">
         <h2>VALORES</h2>
@@ -187,11 +193,12 @@ const stats = [
   </section>
 
   <!-- CTA Section -->
-  <section class="about-cta" style={`background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${heroTresImg.src});`}>
+  <section class="about-cta" role="region" aria-labelledby="about-cta-title" style={`background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${heroTresImg.src});`}>
+    <h2 id="about-cta-title" class="sr-only">Llamado a la Acción</h2>
     <div class="container">
       <div class="cta-content">
         <h2>¿Listo para experimentar la diferencia de trabajar con nosotros?</h2>
-        <p>Contáctanos hoy mismo y descubre por qué cientos de clientes confían en nuestros servicios.</p>
+        <p class="text-white">Contáctanos hoy mismo y descubre por qué cientos de clientes confían en nuestros servicios.</p>
         <div class="cta-buttons">
           <a href="/contacto" class="btn btn-light">Contáctanos</a>
           <a href="/servicios" class="btn btn-outline-light">Ver Servicios</a>

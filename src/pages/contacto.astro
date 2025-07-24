@@ -1,8 +1,9 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import BaseHead from '../components/BaseHead.astro';
 
-const pageTitle = 'Contáctenos';
-const pageDescription = 'Ponte en contacto con nuestro equipo. Estamos aquí para responder a todas tus preguntas.';
+const pageTitle = 'Contáctanos | Jonathan Roofing & Landscaping';
+const pageDescription = 'Solicita tu cotización gratis o resuelve tus dudas sobre mantenimiento de áreas verdes, techos y handyman. ¡Respuesta en menos de 24 h!'
 
 const contactInfo = [
   { icon: 'fas fa-map-marker-alt', title: 'Dirección', content: 'Barranquitas, Puerto Rico', link: 'https://www.openstreetmap.org/#map=14/18.1869/-66.3129' },
@@ -21,10 +22,11 @@ const formFields = [
 ---
 
 <MainLayout title={pageTitle} description={pageDescription}>
-  <section class="page-header">
+  <BaseHead title={pageTitle} description={pageDescription} slot="head" />
+  <section class="page-header" role="region" aria-labelledby="contact-header-title">
     <div class="container">
-      <h1>Contáctenos</h1>
-      <nav class="breadcrumb">
+      <h1 id="contact-header-title">Contáctenos</h1>
+      <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="/">Inicio</a>
         <span>/</span>
         <span>Contacto</span>
@@ -32,16 +34,18 @@ const formFields = [
     </div>
   </section>
 
-  <section class="contact-section">
+  <section class="contact-section" role="region" aria-labelledby="contact-section-title">
     <div class="container">
       <div class="section-header">
-        <h2>Estamos Aquí para Ayudarte</h2>
+        <h2 id="contact-section-title">Estamos Aquí para Ayudarte</h2>
         <p>Completa el formulario y nos pondremos en contacto contigo.</p>
       </div>
       
       <div class="contact-container">
         <div class="contact-form-container">
           <form id="contactForm" class="contact-form">
+            <fieldset>
+              <legend class="sr-only">Formulario de Contacto</legend>
             {formFields.map(field => (
               <div class="form-group">
                 <label for={field.id}>
@@ -75,12 +79,13 @@ const formFields = [
             </div>
             
             <div id="formMessage" class="form-message"></div>
+            </fieldset>
           </form>
         </div>
         
-        <div class="contact-info-container">
+        <div class="contact-info-container" role="region" aria-labelledby="contact-info-title">
           <div class="contact-info-box">
-            <h3>Información de Contacto</h3>
+            <h3 id="contact-info-title">Información de Contacto</h3>
             <p>Estamos disponibles para atenderte en nuestro horario de atención.</p>
             
             <ul class="contact-info-list">
@@ -117,7 +122,8 @@ const formFields = [
     </div>
   </section>
   
-  <section class="map-section">
+  <section class="map-section" role="region" aria-labelledby="map-section-title">
+    <h2 id="map-section-title" class="sr-only">Mapa de Ubicación</h2>
     <div id="map"></div>
   </section>
 </MainLayout>
@@ -358,16 +364,37 @@ const formFields = [
     const formMessage = document.getElementById('formMessage');
     
     if (form) {
-      form.addEventListener('submit', (e) => {
+      form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        formMessage.textContent = 'Mensaje enviado con éxito. ¡Gracias por contactarnos!';
-        formMessage.className = 'form-message success';
-        form.reset();
-        
+        const fd = new FormData(form);
+        formMessage.textContent = 'Enviando...';
+        formMessage.className = 'form-message loading';
+
+        try {
+          const res = await fetch('/api/contact', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(Object.fromEntries(fd))
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            formMessage.textContent = data.message;
+            formMessage.className = 'form-message success';
+            form.reset();
+          } else {
+            throw new Error(data.message || 'Error desconocido');
+          }
+        } catch (err) {
+          console.error(err);
+          formMessage.textContent = err.message || 'Hubo un error al enviar. Intenta nuevamente.';
+          formMessage.className = 'form-message error';
+        }
+
         setTimeout(() => {
           formMessage.textContent = '';
           formMessage.className = 'form-message';
-        }, 5000);
+        }, 8000);
       });
     }
 
