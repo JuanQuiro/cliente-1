@@ -12,7 +12,27 @@ const contactInfo = [
   { icon: 'fas fa-clock', title: 'Horario', content: 'Lun-Vie: 8:00 AM - 6:00 PM\nSáb: 9:00 AM - 2:00 PM', link: '' }
 ];
 
-const formFields = [
+type InputField = {
+  id: string;
+  type: 'text' | 'email' | 'tel';
+  label: string;
+  placeholder: string;
+  required: boolean;
+};
+
+// Discriminated union for textarea fields
+type TextareaField = {
+  id: string;
+  type: 'textarea';
+  label: string;
+  placeholder: string;
+  required: boolean;
+};
+
+// Union of all possible form fields
+type FormField = InputField | TextareaField;
+
+const formFields: FormField[] = [
   { id: 'name', type: 'text', label: 'Nombre Completo', placeholder: 'Tu nombre completo', required: true },
   { id: 'email', type: 'email', label: 'Correo Electrónico', placeholder: 'tu@email.com', required: true },
   { id: 'phone', type: 'tel', label: 'Teléfono', placeholder: 'Tu número de teléfono', required: true },
@@ -89,7 +109,7 @@ const formFields = [
             <p>Estamos disponibles para atenderte en nuestro horario de atención.</p>
             
             <ul class="contact-info-list">
-              {contactInfo.map((item, index) => (
+              {contactInfo.map(item => (
                 <li class="contact-info-item">
                   <div class="contact-icon">
                     <i class={item.icon}></i>
@@ -98,8 +118,8 @@ const formFields = [
                     <h4>{item.title}</h4>
                     {item.link ? (
                       <a href={item.link} target="_blank" rel="noopener noreferrer">
-                        {item.content.split('\n').map((line, i) => (
-                          <p key={i}>{line}</p>
+                        {item.content.split('\n').map(line => (
+                          <p>{line}</p>
                         ))}
                       </a>
                     ) : (
@@ -360,13 +380,13 @@ const formFields = [
     }
 
     // Formulario
-    const form = document.getElementById('contactForm');
-    const formMessage = document.getElementById('formMessage');
+    const form = document.getElementById('contactForm') as HTMLFormElement | null;
+    const formMessage = document.getElementById('formMessage') as HTMLElement | null;
     
-    if (form) {
+    if (form && formMessage) {
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const fd = new FormData(form);
+        const fd = new FormData(form as HTMLFormElement);
         formMessage.textContent = 'Enviando...';
         formMessage.className = 'form-message loading';
 
@@ -378,37 +398,58 @@ const formFields = [
           });
 
           let data;
-          const isJson = res.headers.get('content-type')?.includes('application/json');
-          if (isJson) {
+          const contentType = res.headers.get('content-type') || '';
+
+          if (contentType.includes('application/json')) {
             try {
               data = await res.json();
-            } catch (_) {
-              throw new Error('Respuesta no válida del servidor.');
+            } catch (e) {
+              console.warn('Error parseando JSON:', e);
+              data = null;
             }
+          } else {
+            // Si no es JSON, obtenemos texto pero no lo mostramos al usuario directamente
+            const text = await res.text();
+            data = null;
+            console.warn('Respuesta no-JSON del servidor:', text.slice(0,200));
           }
 
           if (!res.ok) {
-            // Si la respuesta no es ok, usar data.message (si existe) o mensaje genérico
             const errorMsg = data?.message || `Error ${res.status}: No fue posible enviar tu mensaje.`;
             throw new Error(errorMsg);
           }
 
-          // Si no retornó JSON, pero sí status OK
           if (!data) {
-            data = { success: true, message: 'Mensaje enviado correctamente.' };
+            data = { success: true, message: '¡Mensaje enviado correctamente!'};
           }
 
           if (data.success) {
             formMessage.textContent = data.message;
             formMessage.className = 'form-message success';
-            form.reset();
+            (form as HTMLFormElement).reset();
           } else {
             throw new Error(data.message || 'Error desconocido');
           }
         } catch (err) {
-          console.error(err);
-          formMessage.textContent = err.message || 'Hubo un error al enviar. Intenta nuevamente.';
+          // Registro extendido en consola
+          console.error('❌ Error al enviar formulario:', err);
+
+          // Si el error es de tipo Response lo procesamos
+          if (err instanceof Response) {
+            const clone = err.clone();
+            const text = await clone.text();
+            console.group('Detalles de la respuesta fallida');
+            console.log('Status:', err.status);
+            console.log('Headers:', Object.fromEntries(err.headers.entries()));
+            console.log('Body (primeros 500 caracteres):', text.slice(0, 500));
+            console.groupEnd();
+          }
+
+          // Mensaje visible al usuario
+          const safeMessage: string = (err as Error)?.message || 'Ocurrió un problema inesperado. Intenta nuevamente o contáctanos.';
+          formMessage.textContent = safeMessage;
           formMessage.className = 'form-message error';
+          formMessage.title = safeMessage; // tooltip
         }
 
         setTimeout(() => {
@@ -421,24 +462,28 @@ const formFields = [
     // FAQ
     const faqItems = document.querySelectorAll('.faq-item');
     faqItems.forEach(item => {
-      const question = item.querySelector('.faq-question');
-      const answer = item.querySelector('.faq-answer');
+      const question = item.querySelector('.faq-question') as HTMLElement | null;
+      const answer = item.querySelector('.faq-answer') as HTMLElement | null;
       
-      question.addEventListener('click', () => {
-        const isOpen = item.classList.contains('active');
-        
-        // Close all items
-        faqItems.forEach(i => {
-          i.classList.remove('active');
-          i.querySelector('.faq-answer').style.maxHeight = '0';
+      if (question) {
+        question.addEventListener('click', () => {
+          if (!answer) return;
+          const isOpen = item.classList.contains('active');
+          
+          // Close all items
+          faqItems.forEach(i => {
+            i.classList.remove('active');
+            const ans = i.querySelector('.faq-answer') as HTMLElement | null;
+            if (ans) ans.style.maxHeight = '0';
+          });
+          
+          // Toggle current item
+          if (!isOpen) {
+            item.classList.add('active');
+            answer.style.maxHeight = `${answer.scrollHeight}px`;
+          }
         });
-        
-        // Toggle current item
-        if (!isOpen) {
-          item.classList.add('active');
-          answer.style.maxHeight = answer.scrollHeight + 'px';
-        }
-      });
+      }
     });
   });
 </script>
