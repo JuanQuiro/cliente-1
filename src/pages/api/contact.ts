@@ -91,7 +91,7 @@ Fecha: ${new Date().toLocaleString('es-PR', { timeZone: 'America/Puerto_Rico' })
 
       if (sendResult.error) {
         console.error('Error enviando email:', sendResult.error);
-        throw new Error('EmailError');
+        throw new Error(`EmailError: ${sendResult.error?.message || 'Unknown'}`);
       }
     } catch (err) {
       console.error('Fallo al enviar email (Resend):', err);
@@ -115,11 +115,12 @@ Fecha: ${new Date().toLocaleString('es-PR', { timeZone: 'America/Puerto_Rico' })
     });
 
   } catch (error) {
+    const debug = true; // temporal
     console.error('Error processing contact form:', error);
     
     return new Response(JSON.stringify({
       success: false,
-      message: 'Hubo un error al enviar tu mensaje. Por favor intenta nuevamente.'
+      message: debug ? (error instanceof Error ? `${error.message}\n${error.stack}` : String(error)) : 'Hubo un error al enviar tu mensaje. Por favor intenta nuevamente.'
     }), {
       status: 500,
       headers: {
