@@ -3,8 +3,29 @@ import type { APIRoute } from 'astro';
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request }) => {
+  let payload: Record<string, unknown> | null = null;
+  // Intentamos parsear JSON de forma segura
   try {
-    const { name, email, phone = '', subject, message } = await request.json();
+    const contentType = request.headers.get('content-type') || '';
+    if (contentType.includes('application/json')) {
+      payload = await request.json();
+    } else {
+      // Si no es JSON, intentamos convertir form data a objeto
+      const formData = await request.formData();
+      payload = Object.fromEntries(formData.entries());
+    }
+  } catch (err) {
+    console.warn('Body JSON parse error:', err);
+    return new Response(JSON.stringify({
+      success: false,
+      message: 'Formato de datos inválido.'
+    }), {
+      status: 400,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+  try {
+    const { name, email, phone = '', subject, message } = (payload || {}) as Record<string, string>;
 
     // Validate required fields
     if (!name || !email || !subject || !message) {

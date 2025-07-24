@@ -2,8 +2,27 @@ export { renderers } from '../../renderers.mjs';
 
 const prerender = false;
 const POST = async ({ request }) => {
+  let payload = null;
   try {
-    const { name, email, phone = "", subject, message } = await request.json();
+    const contentType = request.headers.get("content-type") || "";
+    if (contentType.includes("application/json")) {
+      payload = await request.json();
+    } else {
+      const formData = await request.formData();
+      payload = Object.fromEntries(formData.entries());
+    }
+  } catch (err) {
+    console.warn("Body JSON parse error:", err);
+    return new Response(JSON.stringify({
+      success: false,
+      message: "Formato de datos inválido."
+    }), {
+      status: 400,
+      headers: { "Content-Type": "application/json" }
+    });
+  }
+  try {
+    const { name, email, phone = "", subject, message } = payload || {};
     if (!name || !email || !subject || !message) {
       return new Response(JSON.stringify({
         success: false,
@@ -48,7 +67,7 @@ Fecha: ${(/* @__PURE__ */ new Date()).toLocaleString("es-PR", { timeZone: "Ameri
       if (!apiKey) ;
       const resend = new Resend(apiKey);
       const sendResult = await resend.emails.send({
-        from: "Jonathan Roofing <noreply@resend.dev>",
+        from: "Jonathan Roofing <onboarding@resend.dev>",
         to: ["jonathanroofingandlandscaping@gmail.com"],
         subject: `Nuevo mensaje: ${subject}`,
         text: emailContent
