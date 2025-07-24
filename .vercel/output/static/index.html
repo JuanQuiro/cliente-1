@@ -1,0 +1,104 @@
+<!DOCTYPE html><!-- Critical: Immediate hero display script --><script>(function(){const heroImages = ["/_astro/hero-uno.CLt44QJQ_ZLCHgb.webp","/_astro/hero-dos.Bd_hUEtH_Z2j6i2Q.webp","/_astro/hero-tres.BA8c4tSN_1uxBtB.webp"];
+
+// This script runs IMMEDIATELY to prevent any blank hero screen
+window.heroImages = heroImages;
+(function() {
+  // Set hero background immediately when DOM is ready
+  function ensureHeroDisplay() {
+    const hero = document.querySelector('.hero');
+    if (hero) {
+      // Ensure the hero has immediate visual content
+      hero.style.backgroundImage = "url('" + heroImages[0] + "')";
+      hero.style.backgroundSize = 'cover';
+      hero.style.backgroundPosition = 'center';
+      hero.style.backgroundRepeat = 'no-repeat';
+      console.log('⚡ Hero background set immediately');
+    }
+  }
+  
+  // Execute immediately if DOM is ready, otherwise wait for it
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', ensureHeroDisplay);
+  } else {
+    ensureHeroDisplay();
+  }
+})();
+})();</script> <html lang="es"> <head><!-- Global Metadata --><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" type="image/svg+xml" href="/favicon.svg"><link rel="sitemap" href="/sitemap-index.xml"><link rel="alternate" type="application/rss+xml" title="Astro Blog" href="https://tu-dominio.com/rss.xml"><meta name="generator" content="Astro v5.12.0"><!-- Font preloads --><link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin><link rel="preload" href="/fonts/atkinson-bold.woff" as="font" type="font/woff" crossorigin><!-- Canonical URL --><link rel="canonical" href="https://tu-dominio.com/"><!-- Primary Meta Tags --><title>Jonathan Roofing &amp; Landscaping | Mantenimiento Integral en Puerto Rico | Servicios Profesionales</title><meta name="title" content="Jonathan Roofing &#38; Landscaping | Mantenimiento Integral en Puerto Rico | Servicios Profesionales"><meta name="description" content="Expertos en mantenimiento de áreas verdes, limpieza e impermeabilización de techos y soluciones handyman. ¡Transformamos tu espacio con 10 años de experiencia local!"><!-- Open Graph / Facebook --><meta property="og:type" content="website"><meta property="og:url" content="https://tu-dominio.com/"><meta property="og:title" content="Jonathan Roofing &#38; Landscaping | Mantenimiento Integral en Puerto Rico | Servicios Profesionales"><meta property="og:description" content="Expertos en mantenimiento de áreas verdes, limpieza e impermeabilización de techos y soluciones handyman. ¡Transformamos tu espacio con 10 años de experiencia local!"><meta property="og:image" content="https://tu-dominio.com/_astro/hero.DECBFIDn.png"><!-- Twitter --><meta property="twitter:card" content="summary_large_image"><meta property="twitter:url" content="https://tu-dominio.com/"><meta property="twitter:title" content="Jonathan Roofing &#38; Landscaping | Mantenimiento Integral en Puerto Rico | Servicios Profesionales"><meta property="twitter:description" content="Expertos en mantenimiento de áreas verdes, limpieza e impermeabilización de techos y soluciones handyman. ¡Transformamos tu espacio con 10 años de experiencia local!"><meta property="twitter:image" content="https://tu-dominio.com/_astro/hero.DECBFIDn.png"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Jonathan Roofing &amp; Landscaping | Mantenimiento Integral en Puerto Rico | Servicios Profesionales</title><!-- Favicon --><link rel="icon" type="image/svg+xml" href="/favicon.svg"><!-- Google Fonts --><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet"><!-- Font Awesome --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><!-- Alpine.js --><script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script><link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="anonymous"><script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin="anonymous" defer></script><!-- Global Styles --><link rel="stylesheet" href="/_astro/about.5CA6Iohi.css">
+<link rel="stylesheet" href="/_astro/index.DCDGfea5.css"></head> <body> <!-- WhatsApp Floating Button --> <a href="http://wa.link/tx3x9f" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp"> <i class="fab fa-whatsapp"></i> </a> <header class="navbar" data-astro-cid-5blmo7yk> <div class="container" data-astro-cid-5blmo7yk> <a href="/" class="logo" data-astro-cid-5blmo7yk> <img src="/_astro/logo-navbar.GnEZt_7C.png" alt="Jonathan Roofing" class="logo-image" data-astro-cid-5blmo7yk> </a> <button class="mobile-menu-btn" aria-label="Menú" aria-expanded="false" aria-controls="nav-links" data-astro-cid-5blmo7yk> <span class="menu-icon" data-astro-cid-5blmo7yk></span> </button> <ul class="nav-links" id="nav-links" data-astro-cid-5blmo7yk> <li class="close-btn" data-astro-cid-5blmo7yk><button class="close-menu-btn" aria-label="Cerrar menú" data-astro-cid-5blmo7yk>&times;</button></li> <li data-astro-cid-5blmo7yk><a href="/" class="nav-link" data-astro-cid-5blmo7yk>Inicio</a></li> <li data-astro-cid-5blmo7yk><a href="/servicios" class="nav-link" data-astro-cid-5blmo7yk>Servicios</a></li> <li data-astro-cid-5blmo7yk><a href="/nosotros" class="nav-link " data-astro-cid-5blmo7yk>Nosotros</a></li> <li data-astro-cid-5blmo7yk><a href="/contacto" class="nav-link " data-astro-cid-5blmo7yk>Contacto</a></li> <li class="cta" data-astro-cid-5blmo7yk><a href="http://wa.link/tx3x9f" class="btn-primary" data-astro-cid-5blmo7yk>Cotización Gratis</a></li> </ul> <div class="nav-overlay" id="nav-overlay" data-astro-cid-5blmo7yk></div> </div> </header>  <script>
+  (() => {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+    const menuBtn = navbar.querySelector('.mobile-menu-btn');
+    const navLinks = navbar.querySelector('#nav-links');
+    const overlay = document.getElementById('nav-overlay');
+    const closeBtn = navLinks.querySelector('.close-menu-btn');
+    if (!menuBtn || !navLinks) return;
+
+    const toggleMenu = () => {
+      const expanded = menuBtn.getAttribute('aria-expanded') === 'true';
+      menuBtn.setAttribute('aria-expanded', (!expanded).toString());
+      navLinks.classList.toggle('active');
+      if (overlay) overlay.classList.toggle('active');
+      document.body.classList.toggle('overflow-hidden', !expanded);
+    };
+
+    menuBtn.addEventListener('click', toggleMenu);
+    if (overlay) overlay.addEventListener('click', toggleMenu);
+    if (closeBtn) closeBtn.addEventListener('click', toggleMenu);
+    // Cerrar con tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && navLinks.classList.contains('active')) {
+        toggleMenu();
+      }
+    });
+    navLinks.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => {
+      navLinks.classList.remove('active');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      document.body.classList.remove('overflow-hidden');
+    }));
+  })();
+</script> <main role="main">           <section aria-label="Hero: Mantenimiento Integral" class="hero" style="background-image: url('/_astro/hero-uno.CLt44QJQ_ZLCHgb.webp')" data-astro-cid-j7pv25f6> <!-- Dark gradient overlay for better text readability --> <div class="hero-overlay" data-astro-cid-j7pv25f6></div> <div class="container" data-astro-cid-j7pv25f6> <div class="hero-content" data-astro-cid-j7pv25f6> <h1 class="hero-title" data-astro-cid-j7pv25f6><span class="text-green" data-astro-cid-j7pv25f6>Servicios de Mantenimiento</span> <span class="text-yellow" data-astro-cid-j7pv25f6>Residencial y Comercial</span></h1> <p class="tagline !text-white !font-semibold" data-astro-cid-j7pv25f6>Instaladores expertos en techado y paisajismo a su servicio. Obtenga más información sobre nuestros servicios y comience hoy mismo.</p> <div class="hero-buttons" data-astro-cid-j7pv25f6> <a href="/servicios" class="btn btn-primary hover:text-black" data-astro-cid-j7pv25f6>Nuestros Servicios</a> <a href="/contacto" class="btn btn-outline" data-astro-cid-j7pv25f6>Solicitar Cotización</a> </div> </div> </div> <!-- Slider Navigation --> <div class="slider-nav" data-astro-cid-j7pv25f6> <button class="slider-arrow slider-arrow-prev" aria-label="Previous slide" data-astro-cid-j7pv25f6> <i class="fas fa-chevron-left" data-astro-cid-j7pv25f6></i> </button> <button class="slider-arrow slider-arrow-next" aria-label="Next slide" data-astro-cid-j7pv25f6> <i class="fas fa-chevron-right" data-astro-cid-j7pv25f6></i> </button> </div> <div class="slider-dots" data-astro-cid-j7pv25f6></div> <!-- Slider Progress Bar --> <div class="slider-progress" data-astro-cid-j7pv25f6> <div class="slider-progress-bar" data-astro-cid-j7pv25f6></div> </div> </section>  <section id="about" aria-labelledby="about-section-heading" class="about-section" data-astro-cid-j7pv25f6> <h2 id="about-section-heading" class="sr-only" data-astro-cid-j7pv25f6>Sobre Nosotros</h2> <div class="container about-grid" data-astro-cid-j7pv25f6> <!-- Card Sobre Nosotros --> <div class="about-card" data-astro-cid-j7pv25f6> <h3 data-astro-cid-j7pv25f6><span class="highlight" data-astro-cid-j7pv25f6>SOBRE NOSOTROS</span></h3> <p data-astro-cid-j7pv25f6><em data-astro-cid-j7pv25f6>En Jonathan Roofing & Landscaping, no solo mejoramos espacios exteriores, ¡los reinventamos!</em></p> <p data-astro-cid-j7pv25f6>Somos su aliado confiable en Puerto Rico para transformar techos, jardines y hogares con soluciones integrales que unen durabilidad y belleza.</p> <div class="mt-6 space-y-4" data-astro-cid-j7pv25f6> <!-- Bloque áreas verdes --> <div class="service-block" data-astro-cid-j7pv25f6> <h4 class="text-lg font-semibold flex items-center gap-2" data-astro-cid-j7pv25f6><i class="fas fa-seedling text-green-600" data-astro-cid-j7pv25f6></i>Mantenimiento de Áreas Verdes de Precisión</h4> <ul class="list-disc list-inside ml-5 text-sm" data-astro-cid-j7pv25f6> <li data-astro-cid-j7pv25f6>Equipos STIHL, ECHO, BERNARD</li> </ul> </div> <!-- Bloque sellado de techos --> <div class="service-block" data-astro-cid-j7pv25f6> <h4 class="text-lg font-semibold flex items-center gap-2" data-astro-cid-j7pv25f6><i class="fas fa-water text-blue-600" data-astro-cid-j7pv25f6></i>Sellado de Techos</h4> <ul class="list-disc list-inside ml-5 text-sm" data-astro-cid-j7pv25f6> <li data-astro-cid-j7pv25f6>Materiales premium: Eterna Undersystem y Marin Membrana</li> </ul> </div> <!-- Bloque servicios extra --> <div class="service-block" data-astro-cid-j7pv25f6> <h4 class="text-lg font-semibold flex items-center gap-2" data-astro-cid-j7pv25f6><i class="fas fa-tools text-yellow-600" data-astro-cid-j7pv25f6></i>Servicios que Van Más Allá</h4> <ul class="list-disc list-inside ml-5 text-sm space-y-1" data-astro-cid-j7pv25f6> <li data-astro-cid-j7pv25f6>Pintura que revitaliza fachadas</li> <li data-astro-cid-j7pv25f6>Mudanzas sin estrés</li> <li data-astro-cid-j7pv25f6>Soluciones handyman con acabados perfectos, entre otros</li> </ul> </div> </div> </div> <!-- Beneficios directos --> <div class="benefit-card" data-astro-cid-j7pv25f6> <i class="fas fa-map-marker-alt icon" data-astro-cid-j7pv25f6></i> <h4 data-astro-cid-j7pv25f6>Experiencia Local</h4> <p data-astro-cid-j7pv25f6>10 años sirviendo a comunidades puertorriqueñas y conocimiento profundo de sus necesidades climáticas y estructurales.</p> </div> <div class="benefit-card" data-astro-cid-j7pv25f6> <i class="fas fa-check-circle icon" data-astro-cid-j7pv25f6></i> <h4 data-astro-cid-j7pv25f6>Calidad Garantizada</h4> <p data-astro-cid-j7pv25f6>Equipos industriales y materiales premium; sellado de techos con garantía incluida.</p> </div> <div class="benefit-card" data-astro-cid-j7pv25f6> <i class="fas fa-tools icon" data-astro-cid-j7pv25f6></i> <h4 data-astro-cid-j7pv25f6>Soluciones Prácticas</h4> <p data-astro-cid-j7pv25f6>Resolución eficiente de problemas (empozamientos, grietas, jardines descuidados) y mantenimiento preventivo para ahorrar costos.</p> </div> <div class="benefit-card" data-astro-cid-j7pv25f6> <i class="fas fa-headset icon" data-astro-cid-j7pv25f6></i> <h4 data-astro-cid-j7pv25f6>Atención al Cliente</h4> <p data-astro-cid-j7pv25f6>Servicio cercano y dedicado, adaptado a las necesidades de cada proyecto.</p> </div> </div> </section>  <section class="featured-services" data-astro-cid-j7pv25f6> <div class="container " data-astro-cid-j7pv25f6> <div class="section-header " data-astro-cid-j7pv25f6> <h2 data-astro-cid-j7pv25f6>Nuestros Servicios</h2> <p data-astro-cid-j7pv25f6>Ofrecemos una amplia gama de servicios profesionales para satisfacer todas tus necesidades de mantenimiento.</p> </div> <div class="services-grid " data-astro-cid-j7pv25f6> <a href="/servicios#areas-verdes" class="service-card" data-astro-cid-j7pv25f6> <div class="service-thumb" data-astro-cid-j7pv25f6> <img src="/_astro/servicio-matas.d2V7T6ve.jpeg" alt="Corte de Grama" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" data-astro-cid-j7pv25f6> </div> <div class="service-content" data-astro-cid-j7pv25f6> <h3 data-astro-cid-j7pv25f6>Corte de Grama</h3> <p data-astro-cid-j7pv25f6>Mantenimiento profesional de jardines y áreas verdes para mantener tu espacio exterior impecable.</p> </div> </a> <a href="/servicios#lavado-techos" class="service-card" data-astro-cid-j7pv25f6> <div class="service-thumb" data-astro-cid-j7pv25f6> <img src="/_astro/servicio-techo.Djz5poaY.jpg" alt="Limpieza de Techos" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" data-astro-cid-j7pv25f6> </div> <div class="service-content" data-astro-cid-j7pv25f6> <h3 data-astro-cid-j7pv25f6>Limpieza de Techos</h3> <p data-astro-cid-j7pv25f6>Eliminación de musgo, hojas y suciedad para prolongar la vida útil de tu techo.</p> </div> </a> <a href="/servicios#pintura" class="service-card" data-astro-cid-j7pv25f6> <div class="service-thumb" data-astro-cid-j7pv25f6> <img src="/_astro/portada-handyman.Dt_Psd6S.jpeg" alt="Pintura Profesional" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" data-astro-cid-j7pv25f6> </div> <div class="service-content" data-astro-cid-j7pv25f6> <h3 data-astro-cid-j7pv25f6>Pintura Profesional</h3> <p data-astro-cid-j7pv25f6>Transforma tus espacios con nuestro servicio de pintura de la más alta calidad.</p> </div> </a> </div> <div class="text-center mt-8" data-astro-cid-j7pv25f6> <a href="/servicios" class="btn btn-primary" data-astro-cid-j7pv25f6>Ver más servicios</a> </div> </div> </section>  <section class="cta-banner" data-astro-cid-j7pv25f6><div class="container" data-astro-cid-j7pv25f6> <h2 class="text-white mr-6" data-astro-cid-j7pv25f6>¿Listo para transformar tu espacio?</h2> <a href="/contacto" class="btn btn-primary" data-astro-cid-j7pv25f6>Solicita tu Cotización Gratis</a> </div> </section>  <section class="contact-section" data-astro-cid-j7pv25f6> <div class="container" data-astro-cid-j7pv25f6> <div class="contact-grid" data-astro-cid-j7pv25f6> <div class="contact-info" data-astro-cid-j7pv25f6> <h2 data-astro-cid-j7pv25f6>Contáctanos</h2> <p data-astro-cid-j7pv25f6>¿Tienes alguna pregunta o necesitas más información? Estamos aquí para ayudarte.</p> <div class="info-item" data-astro-cid-j7pv25f6> <div class="info-icon" data-astro-cid-j7pv25f6> <i class="fas fa-phone" data-astro-cid-j7pv25f6></i> </div> <div class="info-content" data-astro-cid-j7pv25f6> <h4 data-astro-cid-j7pv25f6>Teléfono</h4> <a href="tel:+19392634528" data-astro-cid-j7pv25f6>+1 (939) 263-4528</a> </div> </div> <div class="info-item" data-astro-cid-j7pv25f6> <div class="info-icon" data-astro-cid-j7pv25f6> <i class="fas fa-envelope" data-astro-cid-j7pv25f6></i> </div> <div class="info-content" data-astro-cid-j7pv25f6> <h4 data-astro-cid-j7pv25f6>Correo electrónico</h4> <a href="mailto:jonathanroofingandlandscaping@gmail.com" data-astro-cid-j7pv25f6>jonathanroofingandlandscaping@gmail.com</a> </div> </div> <div class="info-item" data-astro-cid-j7pv25f6> <div class="info-icon" data-astro-cid-j7pv25f6> <i class="fas fa-map-marker-alt" data-astro-cid-j7pv25f6></i> </div> <div class="info-content" data-astro-cid-j7pv25f6> <h4 data-astro-cid-j7pv25f6>Dirección</h4> <p data-astro-cid-j7pv25f6>Barranquitas, Puerto Rico</p> </div> </div> <div class="social-links" data-astro-cid-j7pv25f6> <a href="https://www.facebook.com/share/v/1CGUbDV77U/?mibextid=wwXIfr" class="social-link" aria-label="Facebook" data-astro-cid-j7pv25f6> <i class="fab fa-facebook-f" data-astro-cid-j7pv25f6></i> </a> <a class="hidden" href="#" class="social-link" aria-label="Instagram" data-astro-cid-j7pv25f6> <i class="fab fa-instagram" data-astro-cid-j7pv25f6></i> </a> <a href="http://wa.link/tx3x9f" class="social-link" aria-label="WhatsApp" data-astro-cid-j7pv25f6> <i class="fab fa-whatsapp" data-astro-cid-j7pv25f6></i> </a> </div> </div> <div class="map-container" data-astro-cid-j7pv25f6> <div id="map" data-astro-cid-j7pv25f6></div> <div class="map-overlay" data-astro-cid-j7pv25f6> <i class="fas fa-map-marker-alt" data-astro-cid-j7pv25f6></i> <span data-astro-cid-j7pv25f6>Nuestra ubicación</span> </div> </div> </div> </div> </section>  <script type="module" src="/_astro/index.astro_astro_type_script_index_0_lang.D2hFRnz-.js"></script> <script type="module">window.addEventListener("load",()=>{const o=document.getElementById("map");if(!o||typeof L>"u")return;const r=[18.1869,-66.3129],i="154b7c6250724292ab60fdac2ff0669c",s=o.parentElement,t=document.createElement("div");t.className="map-spinner",s.appendChild(t),L.Icon.Default.mergeOptions({iconRetinaUrl:"https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png",iconUrl:"https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",shadowUrl:"https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png"});const e=L.map(o,{zoomControl:!1,attributionControl:!1}).setView(r,13);L.control.zoom({position:"bottomright"}).addTo(e),L.control.attribution({position:"bottomleft",prefix:!1}).addTo(e);const n=L.tileLayer(`https://tile.thunderforest.com/landscape/{z}/{x}/{y}.png?apikey=${i}`,{attribution:'<span style="font-size: 11px; opacity: 0.7;">&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors & <a href="https://www.thunderforest.com/">Thunderforest</a></span>',maxZoom:18,minZoom:10,opacity:.9}).addTo(e);n.on("load",()=>t.remove()),n.on("tileerror",()=>{e.removeLayer(n),L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{attribution:'<span style="font-size: 11px; opacity: 0.7;">&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors</span>',maxZoom:18,minZoom:10,opacity:.9}).addTo(e).on("load",()=>t.remove())});const p=L.divIcon({className:"custom-marker",html:`
+            <div style="
+              width: 40px;
+              height: 40px;
+              background: linear-gradient(135deg, #10b981, #059669);
+              border-radius: 50% 50% 50% 0;
+              transform: rotate(-45deg);
+              border: 3px solid white;
+              box-shadow: 0 4px 12px rgba(16, 185, 129, 0.4);
+              display: flex;
+              align-items: center;
+              justify-content: center;
+            ">
+              <i class="fas fa-map-marker-alt" style="
+                color: white;
+                font-size: 16px;
+                transform: rotate(45deg);
+                margin-top: -2px;
+              "></i>
+            </div>
+          `,iconSize:[40,40],iconAnchor:[20,35]}),c=L.marker(r,{icon:p}).addTo(e).bindPopup(`
+            <div style="
+              padding: 12px;
+              font-family: 'Inter', sans-serif;
+              text-align: center;
+              background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+              border-radius: 8px;
+              border: none;
+              box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            ">
+              <h3 style="
+                margin: 0 0 8px 0;
+                color: #1e293b;
+                font-size: 16px;
+                font-weight: 600;
+              ">📍 Nuestra Ubicación</h3>
+              <p style="
+                margin: 0;
+                color: #64748b;
+                font-size: 8px;
+              ">Barranquitas, Puerto Rico</p>
+            </div>
+          `,{closeButton:!1,className:"custom-popup"}).openPopup();setTimeout(()=>{const a=c.getElement();a&&(a.style.animation="markerBounce 2s ease-in-out infinite")},1e3)});</script> </main> <footer data-astro-cid-sz7xmlte>
+&copy; 2025 Creado por Ember Drago
+</footer>  <script src="/js/main.js" type="module"></script> </body> </html>
