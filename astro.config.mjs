@@ -8,7 +8,9 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   site: 'https://tu-dominio.com',
   output: 'server',
-  adapter: vercel({}),
+  adapter: vercel({
+    includeFiles: ['dist/server/**']
+  }),
   integrations: [
     mdx(), 
     sitemap(), 
