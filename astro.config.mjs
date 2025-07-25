@@ -9,7 +9,7 @@ export default defineConfig({
   site: 'https://tu-dominio.com',
   output: 'server',
   adapter: vercel({
-    includeFiles: ['dist/server/**']
+    includeFiles: ['dist/**']
   }),
   integrations: [
     mdx(), 
