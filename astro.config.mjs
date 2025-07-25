@@ -8,7 +8,7 @@ import vercel from '@astrojs/vercel';
 export default defineConfig({
   site: 'https://tu-dominio.com',
   adapter: vercel({
-    includeFiles: ['dist/**']
+      includeFiles: ['.vercel/output/functions/_render.func/dist/server/**']
   }),
   integrations: [
     mdx(), 
