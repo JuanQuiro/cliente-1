@@ -1,0 +1,280 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import BaseHead from '../components/BaseHead.astro';
+import heroBg from '../assets/servicios/hero.png';
+import '../styles/global.css'; // aseguramos que Tailwind se cargue
+import ServiceCard from '../components/ServiceCard.astro';
+
+// Importar imágenes para los servicios
+import servicePlaceholder1 from '../assets/servicios/hero.png';
+import servicePlaceholder2 from '../assets/servicios/hero.png';
+import servicePlaceholderAbout from '../assets/servicios/hero.png';
+import rehabCover from '../assets/servicios/REHABILITACIÓN DE TECHOS/portada de techo.jpg';
+import rehab1 from '../assets/servicios/REHABILITACIÓN DE TECHOS/1-REHABILITACIÓN DE TECHOS.jpeg';
+import rehab2 from '../assets/servicios/REHABILITACIÓN DE TECHOS/2-REHABILITACIÓN DE TECHOS.jpeg';
+import rehab3 from '../assets/servicios/REHABILITACIÓN DE TECHOS/3-REHABILITACIÓN DE TECHOS.jpeg';
+import rehab4 from '../assets/servicios/REHABILITACIÓN DE TECHOS/4-REHABILITACIÓN DE TECHOS.jpg';
+import rehab5 from '../assets/servicios/REHABILITACIÓN DE TECHOS/5-REHABILITACIÓN DE TECHOS.jpeg';
+import rehab6 from '../assets/servicios/REHABILITACIÓN DE TECHOS/6-REHABILITACIÓN DE TECHOS.jpeg';
+import rehab7 from '../assets/servicios/REHABILITACIÓN DE TECHOS/7-REHABILITACIÓN DE TECHOS.jpeg';
+import rehab8 from '../assets/servicios/REHABILITACIÓN DE TECHOS/8-REHABILITACIÓN DE TECHOS.jpeg';
+import rehab9 from '../assets/servicios/REHABILITACIÓN DE TECHOS/9-REHABILITACIÓN DE TECHOS.jpg';
+import handymanCover from '../assets/servicios/Handyman/portada-handyman.jpeg';
+import hm1 from '../assets/servicios/Handyman/1-handyman.jpeg';
+import hm2 from '../assets/servicios/Handyman/2-handyman.jpeg';
+import hm3 from '../assets/servicios/Handyman/3-handyman.jpeg';
+import hm4 from '../assets/servicios/Handyman/4-handyman.jpg';
+import hm5 from '../assets/servicios/Handyman/5-handyman.jpeg';
+import hm6 from '../assets/servicios/Handyman/6-handyman.jpeg';
+import hm7 from '../assets/servicios/Handyman/7-handyman.jpeg';
+import hm8 from '../assets/servicios/Handyman/8-handyman.jpeg';
+import hm9 from '../assets/servicios/Handyman/9-handyman.jpeg';
+import hm11 from '../assets/servicios/Handyman/11-handyman.jpeg';
+// Imágenes reales de Lavado & Impermeabilización de Techos
+import lavHero from "../assets/servicios/Lavado y Impermeabilización de Techos/impermeabilizacionhero.jpeg";
+import lav1 from "../assets/servicios/Lavado y Impermeabilización de Techos/1-impermeabilizacion.jpeg";
+import lav2 from "../assets/servicios/Lavado y Impermeabilización de Techos/2-impermeabilizacion.jpg";
+import lav3 from "../assets/servicios/Lavado y Impermeabilización de Techos/3-impermeabilizacion.jpg";
+import lav4 from "../assets/servicios/Lavado y Impermeabilización de Techos/4-impermeabilizacion.jpg";
+import lav5 from "../assets/servicios/Lavado y Impermeabilización de Techos/5-impermeabilizacion.jpg";
+import lav6 from "../assets/servicios/Lavado y Impermeabilización de Techos/6-impermeabilizacion.jpg";
+import lav7 from "../assets/servicios/Lavado y Impermeabilización de Techos/7-impermeabilizacion.jpeg";
+import lav8 from "../assets/servicios/Lavado y Impermeabilización de Techos/8-impermeabilizacion.jpg";
+import lav10 from "../assets/servicios/Lavado y Impermeabilización de Techos/10-impermeabilizacion.jpeg";
+import lav11 from "../assets/servicios/Lavado y Impermeabilización de Techos/11-impermeabilizacion.jpeg";
+
+// Importar todas las imágenes de áreas verdes
+import areasVerdesPortada from '../assets/servicios/areas-verdes/areas-verdes-portada.jpeg';
+import areasVerdes01 from '../assets/servicios/areas-verdes/areas-verdes-01.jpeg';
+import areasVerdes02 from '../assets/servicios/areas-verdes/areas-verdes-02.jpeg';
+import areasVerdes03 from '../assets/servicios/areas-verdes/areas-verdes-03.jpeg';
+import areasVerdes04 from '../assets/servicios/areas-verdes/areas-verdes-04.jpeg';
+import areasVerdes05 from '../assets/servicios/areas-verdes/areas-verdes-05.jpeg';
+import areasVerdes06 from '../assets/servicios/areas-verdes/areas-verdes-06.jpeg';
+import areasVerdes07 from '../assets/servicios/areas-verdes/areas-verdes-07.jpeg';
+import areasVerdes08 from '../assets/servicios/areas-verdes/areas-verdes-08.jpeg';
+import areasVerdes09 from '../assets/servicios/areas-verdes/areas-verdes-09.jpeg';
+import areasVerdes10 from '../assets/servicios/areas-verdes/areas-verdes-10.jpeg';
+import areasVerdes11 from '../assets/servicios/areas-verdes/areas-verdes-11.jpeg';
+import areasVerdes12 from '../assets/servicios/areas-verdes/areas-verdes-12.jpeg';
+import areasVerdes13 from '../assets/servicios/areas-verdes/areas-verdes-13.jpeg';
+import areasVerdes14 from '../assets/servicios/areas-verdes/areas-verdes-14.jpeg';
+import areasVerdes15 from '../assets/servicios/areas-verdes/areas-verdes-15.jpeg';
+import areasVerdes16 from '../assets/servicios/areas-verdes/areas-verdes-16.jpeg';
+import areasVerdes17 from '../assets/servicios/areas-verdes/areas-verdes-17.jpeg';
+
+const pageTitle = 'Servicios | Jonathan Roofing & Landscaping';
+const pageDescription = 'Descubre nuestro catálogo de servicios: mantenimiento de áreas verdes, limpieza e impermeabilización de techos, pintura y handyman. Calidad garantizada en Puerto Rico.'
+
+const allServices = [
+  {
+    id: 'areas-verdes',
+    title: 'Mantenimiento de Áreas Verdes',
+    icon: '🌿',
+    description: 'Transformamos tus espacios exteriores en áreas verdes saludables, vibrantes y bien cuidadas.',
+    fullDescription: 'En Jonathan Roofing and Landscaping, transformamos tus espacios exteriores en áreas verdes saludables, vibrantes y bien cuidadas, adaptadas al clima tropical de Puerto Rico.',
+    images: [
+      areasVerdesPortada.src,
+      areasVerdes17.src,
+      areasVerdes01.src,
+      areasVerdes02.src,
+      areasVerdes03.src,
+      areasVerdes04.src,
+      areasVerdes05.src,
+      areasVerdes06.src,
+      areasVerdes07.src,
+      areasVerdes08.src,
+      areasVerdes09.src,
+      areasVerdes10.src,
+      areasVerdes11.src,
+      areasVerdes12.src,
+      areasVerdes13.src,
+      areasVerdes14.src,
+      areasVerdes15.src,
+      areasVerdes16.src,
+    ],
+    features: [
+      'Corte profesional de grama',
+      'Equipos STIHL, ECHO, BERNARD',
+      'Poda técnica de árboles y arbustos',
+      'Control de malezas y fertilización',
+      'Diseño de jardines resistentes al clima',
+      'Mantenimiento preventivo contra plagas'
+    ],
+    whyChooseUs: [
+      'Experiencia local en especies nativas',
+      'Equipos industriales ILLEGNO y OBERNARD',
+      'Soluciones rápidas y duraderas'
+    ],
+    additionalInfo: '🌱 ¡Transforma tu jardín en un oasis tropical!'
+  },
+  {
+    id: 'lavado-techos',
+    title: 'Lavado & Impermeabilización de Techos',
+    icon: '🧼',
+    description: 'Paquete todo-en-uno que alarga la vida de su techo: limpieza + sellado premium.',
+    fullDescription: 'Limpieza profunda que protege y prolonga la vida útil de su techo, seguida de un sellado flexible resistente a huracanes.',
+    images: [
+      lavHero.src,
+      lav1.src,
+      lav2.src,
+      lav3.src,
+      lav4.src,
+      lav5.src,
+      lav6.src,
+      lav7.src,
+      lav8.src,
+      lav10.src,
+      lav11.src
+    ],
+    features: [
+      'Eliminación de musgo, algas y residuos',
+      'Materiales premium: Eterna Undersystem y Marin Membrana.',
+      'Uso de técnicas ecológicas (sin químicos agresivos)',
+      'Sellado premium con garantía',
+      'Protección UV y resistencia a huracanes'
+    ],
+    additionalInfo: '🌧 Prevenga filtraciones con mantenimiento anual'
+  },
+  {
+    id: 'pintura',
+    title: 'REPARACIÓN DE TECHOS Y SISTEMAS DE AGUA',
+    icon: '🎨',
+    description: 'Soluciones expertas para proteger tu propiedad de filtraciones y daños por humedad',
+    fullDescription: 'Reconstruimos la integridad de su techos y sistemas de drenaje con técnicas probadas que incluye: * Sellado profesional de goteras y grietas con materiales Eterna/Marin Membrana *Zabaleta *Reparación de canalones (evita inundaciones en paredes) *Minimización de emposamientos con nivelación precisa *Destape de desagües obstruidos (métodos manuales y mecánicos)',
+    images: [
+      rehabCover.src,
+      rehab1.src,
+      rehab2.src,
+      rehab3.src,
+      rehab4.src,
+      rehab5.src,
+      rehab6.src,
+      rehab7.src,
+      rehab8.src,
+      rehab9.src
+    ],
+    features: [
+      'Sellado profesional de goteras y grietas con materiales Eterna/Marin Membrana',
+      'Zabaleta',
+      'Reparación de canalones (evita inundaciones en paredes)',
+      'Minimización de emposamientos con nivelación precisa',
+      'Destape de desagües obstruidos (métodos manuales y mecánicos)'
+    ],
+    additionalInfo: '🖌 Transformamos sus paredes en 48 horas'
+  },
+  {
+    id: 'handyman',
+    title: 'Handyman (Reparaciones y Obras Menores)',
+    icon: '🛠',
+    description: 'Soluciones rápidas y prácticas para mantener tu propiedad en óptimas condiciones.',
+    fullDescription: 'Ofrecemos un servicio completo de handyman para resolver todas esas necesidades cotidianas con profesionalismo y eficiencia. "¡No importa qué necesites arreglar o mover, nosotros lo hacemos por ti!"',
+    images: [
+      handymanCover.src,
+      hm1.src,
+      hm2.src,
+      hm3.src,
+      hm4.src,
+      hm5.src,
+      hm6.src,
+      hm7.src,
+      hm8.src,
+      hm9.src,
+      hm11.src
+    ],
+    features: [
+      'Reparaciones de cerraduras y seguridad',
+      'Pintura interior/exterior con acabados perfectos',
+      'Mudanzas locales (traslado seguro y organizado)',
+      'Pequeñas remodelaciones y arreglos generales'
+    ],
+    additionalInfo: '¡No importa qué necesites arreglar o mover, nosotros lo hacemos por ti!'
+  }
+];
+---
+
+<MainLayout title={pageTitle} description={pageDescription}>
+  <BaseHead title={pageTitle} description={pageDescription} image={heroBg} slot="head" />
+  <script type="application/ld+json" slot="head">{JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Jonathan Roofing & Landscaping",
+    "image": "https://jonathanroofing.com/logo.png",
+    "@id": "https://jonathanroofing.com/",
+    "url": "https://jonathanroofing.com/servicios",
+    "telephone": "+1 787-123-4567",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Barranquitas",
+      "addressLocality": "Barranquitas",
+      "addressRegion": "PR",
+      "postalCode": "00794",
+      "addressCountry": "PR"
+    },
+    "description": "Servicios de mantenimiento, techado, impermeabilización y áreas verdes en Puerto Rico. 10 años de experiencia.",
+    "areaServed": "Puerto Rico",
+    "openingHours": "Mo-Sa 08:00-18:00",
+    "priceRange": "$",
+    "makesOffer": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Impermeabilización de Techos",
+          "description": "Limpieza profunda y sellado profesional de techos."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Corte de Grama y Jardinería",
+          "description": "Mantenimiento y embellecimiento de áreas verdes."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "REPARACIÓN DE TECHOS Y SISTEMAS DE AGUA",
+          "description": "Reconstruimos la integridad de su techos y sistemas de drenaje con técnicas probadas que incluye: Sellado profesional de goteras y grietas con materiales Eterna/Marin Membrana, Zabaleta, Reparación de canalones (evita inundaciones en paredes), Minimización de emposamientos con nivelación precisa, Destape de desagües obstruidos (métodos manuales y mecánicos)"
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Service",
+          "name": "Handyman (Reparaciones y Obras Menores)",
+          "description": "Soluciones rápidas y prácticas para mantener tu propiedad en óptimas condiciones."
+        }
+      }
+    ]
+  }, null, 2)}</script>
+  <!-- Hero -->
+  <section aria-label="Hero: Servicios" class="relative isolate overflow-hidden h-[80vh] flex items-center justify-center text-center text-white">
+    <img src={heroBg.src} alt="Servicios" class="absolute inset-0 -z-10 h-full w-full object-cover" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-br from-black/80 via-black/50 to-black/80"></div>
+
+    <div class="px-6">
+      <span class="inline-block mb-4 rounded-full bg-yellow-500/20 px-4 py-1 text-sm font-semibold uppercase tracking-wider text-yellow-300 backdrop-blur-sm">Lo que hacemos</span>
+      <h1 class="text-4xl md:text-6xl font-bold mb-6 leading-tight">Nuestros <span class="text-yellow-400">Servicios</span></h1>
+      <p class="text-lg md:text-2xl mb-8 max-w-2xl mx-auto !text-white">Soluciones integrales de mantenimiento y mejoras para tu hogar o negocio.</p>
+      <a href="#lista" class="inline-flex items-center gap-2 rounded-full bg-yellow-500 px-8 py-4 font-semibold text-gray-900 shadow-lg hover:bg-yellow-400 transition">
+        Ver Servicios
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
+      </a>
+    </div>
+
+    <svg class="absolute bottom-0 left-0 w-full h-16 -z-10 text-white" viewBox="0 0 1440 320"><path fill="currentColor" d="M0,160L80,176C160,192,320,224,480,240C640,256,800,256,960,240C1120,224,1280,192,1360,176L1440,160L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
+  </section>
+
+  <!-- Listado -->
+  <section id="lista" role="region" aria-labelledby="services-list-heading" class="py-20 bg-gray-50">
+    <h2 id="services-list-heading" class="sr-only">Listado de Servicios</h2>
+    <div class="container mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+      {allServices.map((service) => (
+        <ServiceCard service={service} />
+      ))}
+    </div>
+  </section>
+</MainLayout>

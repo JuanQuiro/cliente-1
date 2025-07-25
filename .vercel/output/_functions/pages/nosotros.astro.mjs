@@ -1,1 +1,50 @@
-// Contents removed by Astro as it's used for prerendering only
+/* empty css                                 */
+import { a as createComponent, b as renderComponent, r as renderTemplate, m as maybeRenderHead, g as addAttribute } from '../chunks/astro/server_aGPWHd_y.mjs';
+import 'kleur/colors';
+import { $ as $$MainLayout } from '../chunks/MainLayout_CXwWeXT8.mjs';
+import { b as $$BaseHead } from '../chunks/Footer_Cn1fRBOe.mjs';
+import '../chunks/index_MaT6fT73.mjs';
+import { $ as $$Image } from '../chunks/_astro_assets_wLGvh_1A.mjs';
+import '../chunks/hero-uno_WNPyFNAd.mjs';
+import { a as __ASTRO_IMAGE_IMPORT_r2Pe5, _ as __ASTRO_IMAGE_IMPORT_Z1NgFjg } from '../chunks/hero-tres_JNswNaML.mjs';
+/* empty css                                    */
+export { renderers } from '../renderers.mjs';
+
+const aboutImage = new Proxy({"src":"/_astro/nosotros.WS4mBMWw.jpg","width":1000,"height":1000,"format":"jpg"}, {
+						get(target, name, receiver) {
+							if (name === 'clone') {
+								return structuredClone(target);
+							}
+							if (name === 'fsPath') {
+								return "/home/alberto/ember-drago/cliente-1/src/assets/nosotros/nosotros.jpg";
+							}
+							
+							return target[name];
+						}
+					});
+
+const $$Nosotros = createComponent(($$result, $$props, $$slots) => {
+  const pageTitle = "Sobre Nosotros | Jonathan Roofing & Landscaping";
+  const pageDescription = "Descubre la trayectoria de 10 a\xF1os de Jonathan Roofing & Landscaping, nuestra misi\xF3n de brindar soluciones confiables y nuestro compromiso con la calidad en Puerto Rico.";
+  const stats = [
+    { number: "10", label: "A\xF1os de Experiencia" },
+    { number: "500+", label: "Clientes Satisfechos" },
+    { number: "50+", label: "Proyectos Completados" },
+    { number: "24/7", label: "Soporte al Cliente" }
+  ];
+  return renderTemplate`${renderComponent($$result, "MainLayout", $$MainLayout, { "title": pageTitle, "description": pageDescription, "data-astro-cid-noeej2nj": true }, { "default": ($$result2) => renderTemplate`   ${maybeRenderHead()}<section class="page-header" role="region" aria-labelledby="page-header-title"${addAttribute(`background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${__ASTRO_IMAGE_IMPORT_r2Pe5.src});`, "style")} data-astro-cid-noeej2nj> <div class="container" data-astro-cid-noeej2nj> <h1 id="page-header-title" data-astro-cid-noeej2nj>Sobre Nosotros</h1> <nav class="breadcrumb" data-astro-cid-noeej2nj> <a href="/" data-astro-cid-noeej2nj>Inicio</a> <span data-astro-cid-noeej2nj>/</span> <span data-astro-cid-noeej2nj>Nosotros</span> </nav> </div> </section>  <section class="about-intro" role="region" aria-labelledby="intro-title" data-astro-cid-noeej2nj> <div class="container" data-astro-cid-noeej2nj> <div class="about-intro-content" data-astro-cid-noeej2nj> <div class="about-intro-text" data-astro-cid-noeej2nj> <h2 id="intro-title" data-astro-cid-noeej2nj>Jonathan Roofing & Landscaping</h2> <p data-astro-cid-noeej2nj>Nos especializamos en soluciones integrales para hogares y negocios en Puerto Rico, combinando expertise en techos, paisajismo y mantenimiento general.</p> <ul class="space-y-1 list-none mt-4" data-astro-cid-noeej2nj> <li data-astro-cid-noeej2nj>✔ Mantenimiento de áreas verdes usando equipos profesionales (STIHL, ECHO, BERNARD)</li> <li data-astro-cid-noeej2nj>✔ Sellado de techos con materiales premium (Eterna, Marin Membrana)</li> <li data-astro-cid-noeej2nj>✔ Reparación de Techos y sistema de agua</li> <li data-astro-cid-noeej2nj>✔ Servicios de handyman y remodelaciones menores</li> <li data-astro-cid-noeej2nj>✔ Mudanzas locales seguras y organizadas</li> </ul> <p class="mt-6" data-astro-cid-noeej2nj>Nuestra experiencia nos ha permitido convertirnos en la elección confiable de cientos de clientes que buscan:</p> <ul class="list-disc list-inside space-y-1" data-astro-cid-noeej2nj> <li data-astro-cid-noeej2nj><strong data-astro-cid-noeej2nj>Durabilidad</strong>: Trabajos garantizados que resisten el clima tropical</li> <li data-astro-cid-noeej2nj><strong data-astro-cid-noeej2nj>Eficiencia</strong>: Respuesta rápida ante emergencias (goteras, cortes urgentes)</li> <li data-astro-cid-noeej2nj><strong data-astro-cid-noeej2nj>Conexión local</strong>: Entendemos las necesidades únicas de Puerto Rico</li> </ul> <blockquote class="mt-6 italic text-green-700 border-l-4 border-green-600 pl-4" data-astro-cid-noeej2nj>"No solo entregamos servicios... creamos entornos seguros, funcionales y estéticos para tu familia o negocio"</blockquote> </div> <div class="about-intro-image" data-astro-cid-noeej2nj> ${renderComponent($$result2, "Image", $$Image, { "src": aboutImage, "alt": "Nuestro equipo trabajando", "width": 1920, "height": 1080, "class": "w-full h-auto", "data-astro-cid-noeej2nj": true })} </div> </div> </div> </section>  <section class="mission-vision" role="region" aria-labelledby="mission-vision-title" data-astro-cid-noeej2nj> <h2 id="mission-vision-title" class="sr-only" data-astro-cid-noeej2nj>Misión y Visión</h2> <div class="container" data-astro-cid-noeej2nj> <div class="mission-vision-grid" data-astro-cid-noeej2nj> <div class="mission-box" data-astro-cid-noeej2nj> <div class="icon-box" data-astro-cid-noeej2nj> <i class="fas fa-bullseye" data-astro-cid-noeej2nj></i> </div> <h3 data-astro-cid-noeej2nj>MISIÓN</h3> <p data-astro-cid-noeej2nj>En Jonathan Roofing & Landscaping, nos comprometemos a brindar soluciones integrales de mantenimiento y construcción con estándares profesionales, utilizando equipos industriales (STIHL, ECHO, BERNARD) y materiales premium (Eterna, Marin Membrana).</p> </div> <div class="vision-box" data-astro-cid-noeej2nj> <div class="icon-box" data-astro-cid-noeej2nj> <i class="fas fa-eye" data-astro-cid-noeej2nj></i> </div> <h3 data-astro-cid-noeej2nj>VISIÓN</h3> <p data-astro-cid-noeej2nj>Ser referentes en servicios integrales para el hogar y comercio en toda Puerto Rico, reconocidos por:</p> <ul class="list-disc list-inside space-y-1 mt-2" data-astro-cid-noeej2nj> <li data-astro-cid-noeej2nj>🏆 Excelencia técnica en sellado de techos, paisajismo y remodelaciones</li> <li data-astro-cid-noeej2nj>🌱 Innovación constante adoptando las mejores prácticas de la industria</li> <li data-astro-cid-noeej2nj>🤝 Relaciones duraderas con clientes que confían en nuestro trabajo</li> </ul> <p class="mt-4 italic text-green-700" data-astro-cid-noeej2nj>"Queremos ser el primer nombre que viene a mente cuando piensan en ‘mantenimiento profesional’ en la isla"</p> </div> </div> </div> </section>  <section class="values-section" role="region" aria-labelledby="values-section-title" data-astro-cid-noeej2nj> <h2 id="values-section-title" class="sr-only" data-astro-cid-noeej2nj>Valores</h2> <div class="container" data-astro-cid-noeej2nj> <div class="section-header" data-astro-cid-noeej2nj> <h2 data-astro-cid-noeej2nj>VALORES</h2> <p class="text-gray-700" data-astro-cid-noeej2nj>Nuestros principios fundamentales</p> </div> <div class="values-grid" data-astro-cid-noeej2nj> <div class="value-card" data-astro-cid-noeej2nj> <div class="value-icon" data-astro-cid-noeej2nj><i class="fas fa-check-circle" data-astro-cid-noeej2nj></i></div> <h3 data-astro-cid-noeej2nj>Honestidad radical</h3> </div> <div class="value-card" data-astro-cid-noeej2nj> <div class="value-icon" data-astro-cid-noeej2nj><i class="fas fa-check-circle" data-astro-cid-noeej2nj></i></div> <h3 data-astro-cid-noeej2nj>Orgullo boricua</h3> </div> <div class="value-card" data-astro-cid-noeej2nj> <div class="value-icon" data-astro-cid-noeej2nj><i class="fas fa-check-circle" data-astro-cid-noeej2nj></i></div> <h3 data-astro-cid-noeej2nj>Sostenibilidad real</h3> </div> <div class="value-card" data-astro-cid-noeej2nj> <div class="value-icon" data-astro-cid-noeej2nj><i class="fas fa-check-circle" data-astro-cid-noeej2nj></i></div> <h3 data-astro-cid-noeej2nj>Pasión por el detalle</h3> </div> <div class="value-card" data-astro-cid-noeej2nj> <div class="value-icon" data-astro-cid-noeej2nj><i class="fas fa-check-circle" data-astro-cid-noeej2nj></i></div> <h3 data-astro-cid-noeej2nj>Compromiso social</h3> </div> </div> </div> </section>  <section class="stats-section" data-astro-cid-noeej2nj> <div class="container" data-astro-cid-noeej2nj> <div class="stats-grid" data-astro-cid-noeej2nj> ${stats.map((stat) => renderTemplate`<div class="stat-item" data-astro-cid-noeej2nj> <span class="stat-number" data-astro-cid-noeej2nj>${stat.number}</span> <span class="stat-label" data-astro-cid-noeej2nj>${stat.label}</span> </div>`)} </div> </div> </section>  <section class="about-cta" role="region" aria-labelledby="about-cta-title"${addAttribute(`background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url(${__ASTRO_IMAGE_IMPORT_Z1NgFjg.src});`, "style")} data-astro-cid-noeej2nj> <h2 id="about-cta-title" class="sr-only" data-astro-cid-noeej2nj>Llamado a la Acción</h2> <div class="container" data-astro-cid-noeej2nj> <div class="cta-content" data-astro-cid-noeej2nj> <h2 data-astro-cid-noeej2nj>¿Listo para experimentar la diferencia de trabajar con nosotros?</h2> <p class="text-white" data-astro-cid-noeej2nj>Contáctanos hoy mismo y descubre por qué cientos de clientes confían en nuestros servicios.</p> <div class="cta-buttons" data-astro-cid-noeej2nj> <a href="/contacto" class="btn btn-light" data-astro-cid-noeej2nj>Contáctanos</a> <a href="/servicios" class="btn btn-outline-light" data-astro-cid-noeej2nj>Ver Servicios</a> </div> </div> </div> </section> `, "head": ($$result2) => renderTemplate`${renderComponent($$result2, "BaseHead", $$BaseHead, { "title": pageTitle, "description": pageDescription, "image": aboutImage, "slot": "head", "data-astro-cid-noeej2nj": true })}` })} `;
+}, "/home/alberto/ember-drago/cliente-1/src/pages/nosotros.astro", void 0);
+
+const $$file = "/home/alberto/ember-drago/cliente-1/src/pages/nosotros.astro";
+const $$url = "/nosotros";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+	__proto__: null,
+	default: $$Nosotros,
+	file: $$file,
+	url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };

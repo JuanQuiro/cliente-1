@@ -1,7 +1,7 @@
 export { renderers } from '../../renderers.mjs';
 
 const prerender = false;
-const POST = async ({ request }) => {
+const handleRequest = async ({ request }) => {
   let payload = null;
   try {
     const contentType = request.headers.get("content-type") || "";
@@ -74,7 +74,7 @@ Fecha: ${(/* @__PURE__ */ new Date()).toLocaleString("es-PR", { timeZone: "Ameri
       });
       if (sendResult.error) {
         console.error("Error enviando email:", sendResult.error);
-        throw new Error("EmailError");
+        throw new Error(`EmailError: ${sendResult.error?.message || "Unknown"}`);
       }
     } catch (err) {
       console.error("Fallo al enviar email (Resend):", err);
@@ -99,13 +99,27 @@ Fecha: ${(/* @__PURE__ */ new Date()).toLocaleString("es-PR", { timeZone: "Ameri
     console.error("Error processing contact form:", error);
     return new Response(JSON.stringify({
       success: false,
-      message: "Hubo un error al enviar tu mensaje. Por favor intenta nuevamente."
+      message: error instanceof Error ? `${error.message}
+${error.stack}` : String(error) 
     }), {
       status: 500,
       headers: {
         "Content-Type": "application/json"
       }
     });
+  }
+};
+const POST = async (ctx) => {
+  try {
+    return await handleRequest(ctx);
+  } catch (err) {
+    console.error("UNHANDLED ERROR in /api/contact:", err);
+    const message = err instanceof Error ? `${err.message}
+${err.stack}` : String(err);
+    return new Response(
+      JSON.stringify({ success: false, message }),
+      { status: 500, headers: { "Content-Type": "application/json" } }
+    );
   }
 };
 
