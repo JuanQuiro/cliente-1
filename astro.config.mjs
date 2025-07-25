@@ -3,11 +3,12 @@ import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
-import vercel from '@astrojs/vercel';
+import node from '@astrojs/node';
 
 export default defineConfig({
   site: 'https://tu-dominio.com',
-  adapter: vercel(),
+  output: 'server',
+  adapter: node({ mode: 'standalone' }),
   integrations: [
     mdx(), 
     sitemap(), 
