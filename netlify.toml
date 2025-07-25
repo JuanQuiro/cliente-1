@@ -1,0 +1,14 @@
+[build]
+  command = "bun run build"
+  publish = "dist/client"
+
+[functions]
+  directory = "dist/server"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[build.environment]
+  NODE_VERSION = "18"
