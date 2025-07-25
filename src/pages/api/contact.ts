@@ -2,7 +2,8 @@ import type { APIRoute } from 'astro';
 
 export const prerender = false;
 
-export const POST: APIRoute = async ({ request }) => {
+// Lógica principal ahora en handleRequest para poder capturar cualquier error a nivel superior
+const handleRequest = async ({ request }: Parameters<APIRoute>[0]): Promise<Response> => {
   let payload: Record<string, unknown> | null = null;
   // Intentamos parsear JSON de forma segura
   try {
@@ -127,5 +128,19 @@ Fecha: ${new Date().toLocaleString('es-PR', { timeZone: 'America/Puerto_Rico' })
         'Content-Type': 'application/json'
       }
     });
+  }
+};
+
+// Wrapper que garantiza respuesta JSON aún ante errores no capturados
+export const POST: APIRoute = async (ctx) => {
+  try {
+    return await handleRequest(ctx);
+  } catch (err) {
+    console.error('UNHANDLED ERROR in /api/contact:', err);
+    const message = err instanceof Error ? `${err.message}\n${err.stack}` : String(err);
+    return new Response(
+      JSON.stringify({ success: false, message }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
+    );
   }
 };
