@@ -18,6 +18,11 @@ const heroImageOptimized1 = await getImage({src: heroUno, format: 'avif', qualit
 const heroImageOptimized2 = await getImage({src: heroDos, format: 'avif', quality: 75, width: 1200, height: 675, fallback: {format: 'webp', quality: 80}});
 const heroImageOptimized3 = await getImage({src: heroTres, format: 'avif', quality: 75, width: 1200, height: 675, fallback: {format: 'webp', quality: 80}});
 
+// Optimizar imágenes críticas de servicios para mejor LCP
+const corteImgOptimized = await getImage({src: corteImg, format: 'webp', quality: 80, width: 268, height: 268});
+const techoImgOptimized = await getImage({src: techoImg, format: 'webp', quality: 80, width: 268, height: 268});
+const pinturaImgOptimized = await getImage({src: pinturaImg, format: 'webp', quality: 80, width: 268, height: 268});
+
 const heroImages = [heroImageOptimized1.src, heroImageOptimized2.src, heroImageOptimized3.src];
 const firstHero = heroImages[0];
 
@@ -284,7 +289,7 @@ window.heroImages = heroImages;
       <div class="services-grid ">
         <a href="/servicios#areas-verdes" class="service-card">
           <div class="service-thumb">
-            <img src={corteImg.src} alt="Corte de Grama" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" />
+            <img src={corteImgOptimized.src} alt="Corte de Grama" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" />
           </div>
           <div class="service-content">
             <h3>Corte de Grama</h3>
@@ -294,7 +299,7 @@ window.heroImages = heroImages;
         
         <a href="/servicios#lavado-techos" class="service-card">
           <div class="service-thumb">
-            <img src={techoImg.src} alt="Limpieza de Techos" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" />
+            <img src={techoImgOptimized.src} alt="Impermeabilización de Techos" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" />
           </div>
           <div class="service-content">
             <h3>Limpieza de Techos</h3>
@@ -304,7 +309,7 @@ window.heroImages = heroImages;
         
         <a href="/servicios#pintura" class="service-card">
           <div class="service-thumb">
-            <img src={pinturaImg.src} alt="Pintura Profesional" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" />
+            <img src={pinturaImgOptimized.src} alt="Pintura Profesional" loading="lazy" style="aspect-ratio: 16/9; object-fit: cover; border-radius: 8px;" />
           </div>
           <div class="service-content">
             <h3>Pintura Profesional</h3>

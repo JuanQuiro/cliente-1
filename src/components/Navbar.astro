@@ -1,10 +1,14 @@
 ---
 import logoNavbar from '../assets/logo-navbar.png';
+import { getImage } from 'astro:assets';
+
+// Optimizar logo para mejor rendimiento
+const logoOptimized = await getImage({src: logoNavbar, format: 'webp', quality: 85, width: 99, height: 60});
 ---
 <header class="navbar">
   <div class="container">
     <a href="/" class="logo">
-      <img src={logoNavbar.src} alt="Jonathan Roofing" class="logo-image" />
+      <img src={logoOptimized.src} alt="Jonathan Roofing" class="logo-image" />
     </a>
 
     <button class="mobile-menu-btn" aria-label="Menú" aria-expanded="false" aria-controls="nav-links">
