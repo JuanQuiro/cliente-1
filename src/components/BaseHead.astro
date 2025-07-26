@@ -55,3 +55,41 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
 <meta property="twitter:image" content={new URL(image.src, Astro.url)} />
+
+<!-- JSON-LD Structured Data for Organization -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Jonathan Roofing & Landscaping",
+  "url": "https://jonathanroofingpr.com",
+  "logo": "https://jonathanroofingpr.com/favicon.svg",
+  "sameAs": [
+    "https://www.facebook.com/JonathanRoofingPR",
+    "https://www.instagram.com/JonathanRoofingPR"
+  ],
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+17873234567",
+      "contactType": "Customer Service",
+      "areaServed": "PR",
+      "availableLanguage": "Spanish"
+    }
+  ]
+}
+</script>
+
+<!-- JSON-LD Structured Data for WebSite with SearchAction -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "url": "https://jonathanroofingpr.com/",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://jonathanroofingpr.com/?s={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
