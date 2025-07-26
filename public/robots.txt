@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jonathanroofingpr.com/sitemap-index.xml
