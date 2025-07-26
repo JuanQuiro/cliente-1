@@ -7,7 +7,7 @@ import netlify from '@astrojs/netlify';
 import prefetch from '@astrojs/prefetch';
 
 export default defineConfig({
-  site: 'https://tu-dominio.com',
+  site: 'https://jonathanroofingpr.com/',
   output: 'server', // Netlify SSR mode
   adapter: netlify(),
   integrations: [
