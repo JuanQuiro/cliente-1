@@ -1,4 +1,6 @@
 ---
+export const prerender = true;
+
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
@@ -11,10 +13,10 @@ import corteImg from '../assets/image-hero-index/servicio-matas.jpeg';
 import techoImg from '../assets/image-hero-index/servicio-techo.jpg';
 import pinturaImg from '../assets/image-hero-index/servicio-pinturo.jpeg';
 
-// Generar imágenes optimizadas para el slider con máxima calidad
-const heroImageOptimized1 = await getImage({src: heroUno, format: 'webp', quality: 90, width: 1920, height: 1080});
-const heroImageOptimized2 = await getImage({src: heroDos, format: 'webp', quality: 90, width: 1920, height: 1080});
-const heroImageOptimized3 = await getImage({src: heroTres, format: 'webp', quality: 90, width: 1920, height: 1080});
+// Generar imágenes optimizadas para el slider con máxima performance
+const heroImageOptimized1 = await getImage({src: heroUno, format: 'avif', quality: 75, width: 1200, height: 675, fallback: {format: 'webp', quality: 80}});
+const heroImageOptimized2 = await getImage({src: heroDos, format: 'avif', quality: 75, width: 1200, height: 675, fallback: {format: 'webp', quality: 80}});
+const heroImageOptimized3 = await getImage({src: heroTres, format: 'avif', quality: 75, width: 1200, height: 675, fallback: {format: 'webp', quality: 80}});
 
 const heroImages = [heroImageOptimized1.src, heroImageOptimized2.src, heroImageOptimized3.src];
 const firstHero = heroImages[0];
